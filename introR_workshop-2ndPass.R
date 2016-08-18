@@ -5,7 +5,7 @@
 install.packages("readxl")
 library(readxl)
 
-#Variable Assignment operators <<- <- = -> ->>
+#Overview of Variable Assignment operators <<- <- = -> ->>
 foo <- c("apple", "bannana", "grape")
 foo ->> goo
 
@@ -27,6 +27,7 @@ fullpath                 #display the value of fullpath in the console
 # in the Console, type ?read_excel
 unempdata <- read_excel(fullpath)         #read an excel file into a data frame
 
+
 # Various ways to view the data and descriptive characteristics of the data object
 View(unempdata)
 class(unempdata)
@@ -42,5 +43,22 @@ summary(unempdata)
 # Use dplyr for some data frame manipulation
 library(dplyr)
 tbl_df(unempdata)
-# rename column name
-rename(unempdata, `lost my job` = lost_job)
+
+# Change colunn header
+unempdata <- rename(unempdata, discriminate = descriminate, no_job = lost_job)
+
+# replace "Not Applicable" with "NA)
+unempdata$no_job <- gsub("Not Applicable", "NA", unempdata$no_job)
+unempdata$underemployed <- gsub("NA", "na", unempdata$underemployed)
+
+# FILTER
+data("mtcars")
+data("iris")
+
+install.packages("readr")
+library(readr)
+smokerdata <- read_csv("http://www.cyclismo.org/tutorial/R/_static/smoker.csv")
+
+# is.na
+is.na()
+# table(is.na(foo2$Department..Division))
