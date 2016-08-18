@@ -1,4 +1,4 @@
-# how to configure R with BitBucket via Git
+# HOW TO configure R with BitBucket via Git
 
 ## Set up a BitBucket account
 * [BitBucket](https://bitbucket.org/)
