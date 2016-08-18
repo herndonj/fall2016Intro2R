@@ -1,23 +1,9 @@
 # README
 
-## A file to help set up BitBucket
-* [BitBucket](https://bitbucket.org/)
+## Overview
+* This is a development repository stored on BitBucket
+* BitBucket allows for private repositories
 * [John's BitBucket test: devbb](https://bitbucket.org/libjohn/devbb) -- **THIS document**
+* [HowTo configure R with BitBucket via git](http://foo)
 * [HowTo Configure git & R](https://www.r-bloggers.com/rstudio-and-github/) -- this is the model howTo document I used to set up BitBucket with R
 
-## NOTES
-* In the [git-with-R-config-document](https://www.r-bloggers.com/rstudio-and-github/), the document shows using the following in the RStudio _Shell_
-```
-git remote add origin https://github.com/ewenharrison/test.git
-git config remote.origin.url git@github.com:ewenharrison/test.git
-git pull -u origin master
-git push -u origin master
-```
-
-Meanwhile, the BitBucket Repository Setup says to use different code.  Modified, I did this in the shell and it worked
-```
-git remote add origin https://libjohn@bitbucket.org/libjohn/devbb.git
-git push -u origin master
-```
-
-Now, in R, do a commit and a Push
