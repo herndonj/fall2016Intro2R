@@ -1,4 +1,4 @@
-# though bucket
+# thought bucket
 # Intro to R
 # https://docs.google.com/document/d/1FUdzDSje_b-0n0fxNrrXiJ11kUC5sNzhYdYmyXu_GFU/edit
 
