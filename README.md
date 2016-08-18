@@ -2,7 +2,7 @@
 
 ## A file to help set up BitBucket
 * [BitBucket](https://bitbucket.org/)
-* [John's BitBucket test: devbb](https://bitbucket.org/libjohn/devbb)
+* [John's BitBucket test: devbb](https://bitbucket.org/libjohn/devbb) -- **THIS document**
 * [HowTo Configure git & R](https://www.r-bloggers.com/rstudio-and-github/) -- this is the model howTo document I used to set up BitBucket with R
 
 ## NOTES
@@ -20,4 +20,4 @@ git remote add origin https://libjohn@bitbucket.org/libjohn/devbb.git
 git push -u origin master
 ```
 
-Now, in R, do a committ and a Push
+Now, in R, do a commit and a Push
