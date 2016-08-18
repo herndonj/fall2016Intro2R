@@ -2,7 +2,7 @@
 
 ## Set up a BitBucket account
 * [BitBucket](https://bitbucket.org/)
-* [John's BitBucket test: devbb](https://bitbucket.org/libjohn/devbb) -- **THIS document**
+* [John's BitBucket test: devbb](https://bitbucket.org/libjohn/devbb) -- **MY** Bitbucket home
 * [HowTo Configure git & R](https://www.r-bloggers.com/rstudio-and-github/) -- this is the model howTo document I used to set up BitBucket with R
 
 ## NOTES
