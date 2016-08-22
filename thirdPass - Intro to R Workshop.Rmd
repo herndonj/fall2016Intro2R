@@ -1,0 +1,130 @@
+---
+title: "An RMarkdown version of the .r file"
+author: "John & Joel"
+date: "August 22, 2016"
+---
+This is a Thought Bucket -Test Run
+The follow is a test Rmd file to test suitability for an introductory workshop in R.  This is the first .Rmd version based on a [document](https://docs.google.com/document/d/1FUdzDSje_b-0n0fxNrrXiJ11kUC5sNzhYdYmyXu_GFU/edit) Joel & I are working on. 
+
+# Intro to R
+fist load the kniter and rmarkdown packages.  But his is only to format this file and has nothing to do with Intro to R.  In fact, this section may best be entitled "first side-bar in the Intro to R""
+```{r}
+library(knitr)
+library(rmarkdown)
+```
+
+## Install the **readxl** package
+used to load xcel data
+```{r}
+# install.packages("readxl")
+library(readxl)
+```
+
+## Variable Assignment
+operators <<- <- = -> ->>
+```{r}
+foo <- c("apple", "bannana", "grape")
+foo ->> goo
+```
+## Data Management
+Where is my data directory? 
+```{r}
+getwd()
+# You can change the workding directory using setwd()
+# setwd("c:/somedir/")  
+```
+
+
+
+## Use assignment operators to construct filepath/filename
+e.g. to read data into a dataframe
+```{r}
+DIR <- getwd()
+filename <- "UnempData.xlsx"
+fullpath <- paste(DIR, "/", filename, sep = '')
+# See value of the constructed character vector
+fullpath                 
+#display the value of fullpath in the console
+```
+
+## read excel file (read_excel from readxl package)
+```{r}
+#read an excel file into a data frame
+# read_excel() is part of the readxl() package loaded earlier
+# To get help using read_excel() type the following into the console:  ?read_excel   [Enter]
+unempdata <- read_excel(fullpath)         
+```
+
+## Various ways to view the data and descriptive characteristics of the data object
+### Displays your data in a grid style within the "Source"" pane
+```{r}
+View(unempdata) 
+```
+
+
+### Identify the data variable characteristics of the data object
+```{r}
+class(unempdata)
+```
+
+### Identify the dimentions of the data object
+```{r}
+dim(unempdata)
+
+```
+### Identify the number of rows in the data object
+```{r}
+nrow(unempdata)
+```
+### Identify the number of columns in the data object
+```{r}
+ncol(unempdata)
+```
+### Identify the structure of the data object
+```{r}
+str(unempdata)
+```
+### Identify the top rows of the data object
+```{r}
+head(unempdata)
+```
+### Identify the botom twenty rows of the data object
+```{r}
+tail(unempdata, 20)
+```
+### Identify a statistical summary of the data object
+```{r}
+summary(unempdata)
+```
+
+## Use the dplyr packge for some data frame manipulation
+```{r}
+library(dplyr)
+tbl_df(unempdata)
+```
+
+
+### Change colunn header
+```{r}
+unempdata <- rename(unempdata, discriminate = descriminate, no_job = lost_job)
+```
+
+### Place holder
+replace "Not Applicable" with "NA")
+Recode
+
+
+unempdata$no_job <- gsub("Not Applicable", "NA", unempdata$no_job)
+unempdata$underemployed <- gsub("NA", "na", unempdata$underemployed)
+
+# FILTER
+data("mtcars")
+data("iris")
+
+install.packages("readr")
+library(readr)
+smokerdata <- read_csv("http://www.cyclismo.org/tutorial/R/_static/smoker.csv")
+
+# is.na
+is.na()
+# table(is.na(foo2$Department..Division))

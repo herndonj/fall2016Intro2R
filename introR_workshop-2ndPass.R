@@ -39,7 +39,6 @@ head(unempdata)
 tail(unempdata, 20)
 summary(unempdata)
 
-
 # Use dplyr for some data frame manipulation
 library(dplyr)
 tbl_df(unempdata)
