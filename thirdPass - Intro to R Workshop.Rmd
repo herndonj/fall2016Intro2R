@@ -33,10 +33,9 @@ Workshop Outline
         ix summary()
     5. Using Deplyr for Data Wrangling
         i. tbl_df()
-        i. change column names
-        i. *filter* rows
-        ii. *mutate* columns
-        iv. gsub
+        ii. change column names
+        iii. *filter* rows
+        iv. *mutate* columns
         v. recode
     6. Data Analysis - Summary descriptive Statistics
         i. table
