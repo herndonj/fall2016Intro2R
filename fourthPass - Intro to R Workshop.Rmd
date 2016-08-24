@@ -259,7 +259,7 @@ tbl_df(four.six)
 arrange(four.six, cyl, desc(mpg), desc(hp), wt, wtdisp)
 ```
 
-# Joel:  How do I split on the make string.  I want to split on the space and take the first element for make; second element for model
+# Joel:  How do I split on the four.six$make vector.  I want to split on the space and take the first element for make; second element for model.  basically:  value.split(" ")[0] 
 
 
 data("iris")
