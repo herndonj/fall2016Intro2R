@@ -124,58 +124,43 @@ $(document).ready(function () {
 
 
 <p>This is a Thought Bucket -Test Run The follow is a test Rmd file to test suitability for an introductory workshop in R. This is the first .Rmd version based on a <a href="https://docs.google.com/document/d/1FUdzDSje_b-0n0fxNrrXiJ11kUC5sNzhYdYmyXu_GFU/edit">document</a> Joel &amp; I are working on.</p>
-<ul>
-<li><em>Workshop Outline</em>
-<ol style="list-style-type: decimal">
-<li>Getting Started, load a few library packages from Hadleyverse
-<ol style="list-style-type: lower-roman">
-<li>readxl</li>
-<li>readr</li>
-<li>deplyr</li>
-<li>ggplot2</li>
-</ol></li>
-<li>Data Structure Types
-<ol style="list-style-type: lower-roman">
-<li>Vectors</li>
-<li>Data Frames</li>
-</ol></li>
-<li>Variable Assignment Operators</li>
-<li>Data Management
-<ol style="list-style-type: lower-roman">
-<li>Identify Working Directory: getwd()</li>
-<li>Change Working Directory: setwd()</li>
-<li>Loading <em>data files</em> - Putting it all together</li>
-</ol></li>
-<li>Descriptive Characteristics of data objects
-<ol style="list-style-type: lower-roman">
-<li>View()</li>
-<li>class()</li>
-<li>dim()</li>
-<li>nrow()</li>
-<li>ncol()</li>
-<li>str()</li>
-<li>head()</li>
-<li>tail() ix summary()</li>
-</ol></li>
-<li>Using Deplyr for Data Wrangling
-<ol style="list-style-type: lower-roman">
-<li>tbl_df()</li>
-<li>change column names</li>
-<li><em>filter</em> rows</li>
-<li><em>mutate</em> columns</li>
-<li>gsub</li>
-<li>recode</li>
-</ol></li>
-<li>Data Analysis - Summary descriptive Statistics
-<ol style="list-style-type: lower-roman">
-<li>table</li>
-<li>hist</li>
-<li>barplot</li>
-<li>mosaicplot</li>
-</ol></li>
-<li>Visualizations with ggplot2</li>
-</ol></li>
-</ul>
+<p>Workshop Outline</p>
+<pre><code>1. Getting Started, load a few library packages from Hadleyverse
+    i. readxl
+    ii. readr
+    iii. deplyr
+    iv. ggplot2
+2. Data Structure Types
+    i. Vectors
+    ii. Data Frames
+3. Variable Assignment Operators
+4. Data Management
+    i. Identify Working Directory:  getwd()
+    ii. Change Working Directory:  setwd()
+    iii. Loading *data files* - Putting it all together
+5. Descriptive Characteristics of data objects
+    i. View()
+    ii. class()
+    iii. dim()
+    iv. nrow()
+    v. ncol()
+    vi. str()
+    vii. head()
+    viii. tail()
+    ix summary()
+5. Using Deplyr for Data Wrangling
+    i. tbl_df()
+    i. change column names
+    i. *filter* rows
+    ii. *mutate* columns
+    iv. gsub
+    v. recode
+6. Data Analysis - Summary descriptive Statistics
+    i. table
+    ii. hist
+    iii. barplot
+    iv. mosaicplot
+7. Visualizations with ggplot2</code></pre>
 <p>===================================================================================================</p>
 <div id="identify-library-packages" class="section level2">
 <h2>Identify Library Packages</h2>
@@ -201,7 +186,7 @@ library(dplyr)      # working with data frames - https://github.com/hadley/dplyr
 ##     intersect, setdiff, setequal, union</code></pre>
 <pre class="r"><code>library(ggplot2)    # popular visualization package - https://github.com/hadley/ggplot2
 
-# packages used in creatting the documentation for this workshop and not strictly necessary for running the scripts independently
+# Optional Library Packages
 library(rmarkdown)  # R specific implementation for markdown - https://github.com/hadley/rmarkdown</code></pre>
 <p>===================================================================================================</p>
 </div>
@@ -282,7 +267,14 @@ fullpath                 </code></pre>
 # use the read_excel() function, part of the readxl() package loaded earlier
 # To get help using read_excel() type the following into the console:  ?read_excel   [Enter]
 unempdata &lt;- read_excel(fullpath)         </code></pre>
+<div id="honorable-mention-data-loaders" class="section level4">
+<h4>Honorable Mention Data Loaders</h4>
+<ul>
+<li>foreign - load data from SPSS, SAS, and other Statistical Analysis applicatons</li>
+<li>googlesheets - load data from Google Sheets</li>
+</ul>
 <p>===================================================================================================</p>
+</div>
 </div>
 </div>
 <div id="identify-descriptive-characteristics-of-data-objects" class="section level2">
@@ -316,65 +308,72 @@ unempdata &lt;- read_excel(fullpath)         </code></pre>
 <h3>Identify the structure of the data object</h3>
 <pre class="r"><code>str(unempdata)</code></pre>
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    104 obs. of  6 variables:
-##  $ IDcode       : chr  &quot;0001&quot; &quot;0002&quot; &quot;0003&quot; &quot;0004&quot; ...
-##  $ descriminate : chr  &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; ...
-##  $ lost_job     : chr  &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;No&quot; ...
-##  $ underemployed: chr  &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;No&quot; ...
-##  $ no_client    : chr  &quot;No&quot; &quot;Yes&quot; &quot;No&quot; &quot;No&quot; ...
-##  $ no_promote   : chr  &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;Yes&quot; ...</code></pre>
+##  $ ID                                      : chr  &quot;0001&quot; &quot;0002&quot; &quot;0003&quot; &quot;0004&quot; ...
+##  $  recode: any employment discrimination  : chr  &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; ...
+##  $ lost my job                             : chr  &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;No&quot; ...
+##  $ underemployed                           : chr  &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;No&quot; ...
+##  $ removed from direct contact with clients: chr  &quot;No&quot; &quot;Yes&quot; &quot;No&quot; &quot;No&quot; ...
+##  $ denied a promotion                      : chr  &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;Yes&quot; ...</code></pre>
 </div>
 <div id="identify-the-top-rows-of-the-data-object" class="section level3">
 <h3>Identify the top rows of the data object</h3>
 <pre class="r"><code>head(unempdata)</code></pre>
 <pre><code>## # A tibble: 6 x 6
-##   IDcode descriminate lost_job underemployed no_client no_promote
-##    &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;
-## 1   0001          Yes       No            No        No         No
-## 2   0002          Yes       No            No       Yes         No
-## 3   0003          Yes       No            No        No         No
-## 4   0004          Yes       No            No        No        Yes
-## 5   0005          Yes       No            No        No         No
-## 6   0006          Yes       No           Yes        No         No</code></pre>
+##      ID  recode: any employment discrimination  lost my job underemployed
+##   &lt;chr&gt;                                   &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;
+## 1  0001                                     Yes          No            No
+## 2  0002                                     Yes          No            No
+## 3  0003                                     Yes          No            No
+## 4  0004                                     Yes          No            No
+## 5  0005                                     Yes          No            No
+## 6  0006                                     Yes          No           Yes
+## # ... with 2 more variables: removed from direct contact with
+## #   clients &lt;chr&gt;, denied a promotion  &lt;chr&gt;</code></pre>
 </div>
 <div id="identify-the-botom-twenty-rows-of-the-data-object" class="section level3">
 <h3>Identify the botom twenty rows of the data object</h3>
 <pre class="r"><code>tail(unempdata, 20)</code></pre>
 <pre><code>## # A tibble: 20 x 6
-##    IDcode descriminate       lost_job  underemployed      no_client
-##     &lt;chr&gt;        &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;
-## 1    0085          Yes Not Applicable Not Applicable Not Applicable
-## 2    0086          Yes             No             No             No
-## 3    0087          Yes Not Applicable Not Applicable Not Applicable
-## 4    0088          Yes             No            Yes             No
-## 5    0089          Yes             No            Yes             No
-## 6    0090          Yes             No            Yes             No
-## 7    0091          Yes             No Not Applicable             No
-## 8    0092          Yes             No             No             No
-## 9    0093          Yes             No             No             No
-## 10   0094          Yes            Yes            Yes             No
-## 11   0095          Yes            Yes            Yes            Yes
-## 12   0096          Yes            Yes             No             No
-## 13   0097          Yes             No            Yes             No
-## 14   0098          Yes             No             No             No
-## 15   0099          Yes             No             No            Yes
-## 16   0100          Yes             No Not Applicable             No
-## 17   0101          Yes             No Not Applicable Not Applicable
-## 18   0102          Yes             No             No             No
-## 19   0103          Yes             No             No             No
-## 20   0104          Yes             No             No             No
-## # ... with 1 more variables: no_promote &lt;chr&gt;</code></pre>
+##       ID  recode: any employment discrimination     lost my job
+##    &lt;chr&gt;                                   &lt;chr&gt;          &lt;chr&gt;
+## 1   0085                                     Yes Not Applicable
+## 2   0086                                     Yes             No
+## 3   0087                                     Yes Not Applicable
+## 4   0088                                     Yes             No
+## 5   0089                                     Yes             No
+## 6   0090                                     Yes             No
+## 7   0091                                     Yes             No
+## 8   0092                                     Yes             No
+## 9   0093                                     Yes             No
+## 10  0094                                     Yes            Yes
+## 11  0095                                     Yes            Yes
+## 12  0096                                     Yes            Yes
+## 13  0097                                     Yes             No
+## 14  0098                                     Yes             No
+## 15  0099                                     Yes             No
+## 16  0100                                     Yes             No
+## 17  0101                                     Yes             No
+## 18  0102                                     Yes             No
+## 19  0103                                     Yes             No
+## 20  0104                                     Yes             No
+## # ... with 3 more variables: underemployed &lt;chr&gt;, removed from direct
+## #   contact with clients &lt;chr&gt;, denied a promotion  &lt;chr&gt;</code></pre>
 </div>
 <div id="identify-a-statistical-summary-of-the-data-object" class="section level3">
 <h3>Identify a statistical summary of the data object</h3>
 <pre class="r"><code>summary(unempdata)</code></pre>
-<pre><code>##     IDcode          descriminate         lost_job        
-##  Length:104         Length:104         Length:104        
-##  Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character  
-##  underemployed       no_client          no_promote       
-##  Length:104         Length:104         Length:104        
-##  Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character</code></pre>
+<pre><code>##       ID             recode: any employment discrimination 
+##  Length:104         Length:104                             
+##  Class :character   Class :character                       
+##  Mode  :character   Mode  :character                       
+##  lost my job        underemployed     
+##  Length:104         Length:104        
+##  Class :character   Class :character  
+##  Mode  :character   Mode  :character  
+##  removed from direct contact with clients denied a promotion 
+##  Length:104                               Length:104         
+##  Class :character                         Class :character   
+##  Mode  :character                         Mode  :character</code></pre>
 <p>==============================================================================</p>
 </div>
 </div>
@@ -383,37 +382,81 @@ unempdata &lt;- read_excel(fullpath)         </code></pre>
 <pre class="r"><code># library(dplyr)  # this library packaged was loaded earlier
 tbl_df(unempdata)</code></pre>
 <pre><code>## # A tibble: 104 x 6
-##    IDcode descriminate       lost_job  underemployed      no_client
-##     &lt;chr&gt;        &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;
-## 1    0001          Yes             No             No             No
-## 2    0002          Yes             No             No            Yes
-## 3    0003          Yes             No             No             No
-## 4    0004          Yes             No             No             No
-## 5    0005          Yes             No             No             No
-## 6    0006          Yes             No            Yes             No
-## 7    0007          Yes             No             No             No
-## 8    0008          Yes Not Applicable Not Applicable Not Applicable
-## 9    0009          Yes             No             No             No
-## 10   0010          Yes             No            Yes             No
-## # ... with 94 more rows, and 1 more variables: no_promote &lt;chr&gt;</code></pre>
+##       ID  recode: any employment discrimination     lost my job
+##    &lt;chr&gt;                                   &lt;chr&gt;          &lt;chr&gt;
+## 1   0001                                     Yes             No
+## 2   0002                                     Yes             No
+## 3   0003                                     Yes             No
+## 4   0004                                     Yes             No
+## 5   0005                                     Yes             No
+## 6   0006                                     Yes             No
+## 7   0007                                     Yes             No
+## 8   0008                                     Yes Not Applicable
+## 9   0009                                     Yes             No
+## 10  0010                                     Yes             No
+## # ... with 94 more rows, and 3 more variables: underemployed &lt;chr&gt;,
+## #   removed from direct contact with clients &lt;chr&gt;, denied a promotion
+## #    &lt;chr&gt;</code></pre>
 <div id="change-colunn-header" class="section level3">
 <h3>Change colunn header</h3>
-<pre class="r"><code>unempdata &lt;- rename(unempdata, discriminate = descriminate, no_job = lost_job)</code></pre>
+<pre class="r"><code>colnames(unempdata)     # identify the existing column names</code></pre>
+<pre><code>## [1] &quot;ID&quot;                                      
+## [2] &quot; recode: any employment discrimination &quot; 
+## [3] &quot;lost my job&quot;                             
+## [4] &quot;underemployed&quot;                           
+## [5] &quot;removed from direct contact with clients&quot;
+## [6] &quot;denied a promotion &quot;</code></pre>
+<pre class="r"><code>unempdata &lt;- rename(unempdata, discriminate = ` recode: any employment discrimination `, no_job = `lost my job`, no_clients = `removed from direct contact with clients`, promotion = `denied a promotion `)            # rename column names
+
+
+colnames(unempdata)     # Proof that the names where changed by using the reassignment operator</code></pre>
+<pre><code>## [1] &quot;ID&quot;            &quot;discriminate&quot;  &quot;no_job&quot;        &quot;underemployed&quot;
+## [5] &quot;no_clients&quot;    &quot;promotion&quot;</code></pre>
 </div>
-<div id="place-holder" class="section level3">
-<h3>Place holder</h3>
-<p>replace “Not Applicable” with “NA”) Recode</p>
-<pre class="r"><code>unempdata$no_job &lt;- gsub(&quot;Not Applicable&quot;, &quot;NA&quot;, unempdata$no_job)
-unempdata$underemployed &lt;- gsub(&quot;NA&quot;, &quot;na&quot;, unempdata$underemployed)</code></pre>
+<div id="recode" class="section level3">
+<h3>Recode</h3>
+<ul>
+<li>Use <em>Recode</em> to change the values and supply the NA Characteristics
+<ul>
+<li>Replace “Not Applicable” with “NA”)</li>
+</ul></li>
+<li>Change the character vector to a logical vector</li>
+</ul>
+<pre class="r"><code>unempdata$no_job &lt;- recode(unempdata$no_job, No = &quot;FALSE&quot;, Yes = &quot;TRUE&quot;, &quot;Not Applicable&quot; = NA_character_)</code></pre>
+<pre class="r"><code>class(unempdata$no_job)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>unempdata$no_job &lt;- as.logical(unempdata$no_job)
+tbl_df(unempdata)</code></pre>
+<pre><code>## # A tibble: 104 x 6
+##       ID discriminate no_job  underemployed     no_clients      promotion
+##    &lt;chr&gt;        &lt;chr&gt;  &lt;lgl&gt;          &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;
+## 1   0001          Yes  FALSE             No             No             No
+## 2   0002          Yes  FALSE             No            Yes             No
+## 3   0003          Yes  FALSE             No             No             No
+## 4   0004          Yes  FALSE             No             No            Yes
+## 5   0005          Yes  FALSE             No             No             No
+## 6   0006          Yes  FALSE            Yes             No             No
+## 7   0007          Yes  FALSE             No             No             No
+## 8   0008          Yes     NA Not Applicable Not Applicable Not Applicable
+## 9   0009          Yes  FALSE             No             No            Yes
+## 10  0010          Yes  FALSE            Yes             No             No
+## # ... with 94 more rows</code></pre>
+<pre class="r"><code>summary(unempdata)</code></pre>
+<pre><code>##       ID            discriminate         no_job        underemployed     
+##  Length:104         Length:104         Mode :logical   Length:104        
+##  Class :character   Class :character   FALSE:65        Class :character  
+##  Mode  :character   Mode  :character   TRUE :14        Mode  :character  
+##                                        NA's :25                          
+##   no_clients         promotion        
+##  Length:104         Length:104        
+##  Class :character   Class :character  
+##  Mode  :character   Mode  :character  
+## </code></pre>
 </div>
 <div id="filter" class="section level3">
 <h3>FILTER</h3>
 <p>data(“mtcars”) data(“iris”)</p>
 <p>smokerdata &lt;- read_csv(“<a href="http://www.cyclismo.org/tutorial/R/_static/smoker.csv" class="uri">http://www.cyclismo.org/tutorial/R/_static/smoker.csv</a>”)</p>
-</div>
-<div id="is.na" class="section level3">
-<h3>is.na</h3>
-<p>is.na() # table(is.na(foo2$Department..Division))</p>
 </div>
 </div>
 </div>

@@ -6,7 +6,8 @@ date: "August 22, 2016"
 This is a Thought Bucket -Test Run
 The follow is a test Rmd file to test suitability for an introductory workshop in R.  This is the first .Rmd version based on a [document](https://docs.google.com/document/d/1FUdzDSje_b-0n0fxNrrXiJ11kUC5sNzhYdYmyXu_GFU/edit) Joel & I are working on.  
 
-* *Workshop Outline*
+Workshop Outline
+
     1. Getting Started, load a few library packages from Hadleyverse
         i. readxl
         ii. readr
@@ -64,11 +65,12 @@ library(readr)      # read tabular data into R - https://github.com/hadley/readr
 library(dplyr)      # working with data frames - https://github.com/hadley/dplyr
 library(ggplot2)    # popular visualization package - https://github.com/hadley/ggplot2
 
-# packages used in creatting the documentation for this workshop and not strictly necessary for running the scripts independently
+# Optional Library Packages
 library(rmarkdown)  # R specific implementation for markdown - https://github.com/hadley/rmarkdown
 ```
 
 ===================================================================================================
+
 
 # Intro to R
 Some text may go here
@@ -147,6 +149,7 @@ unempdata <- read_excel(fullpath)
 #### Honorable Mention Data Loaders
 * foreign - load data from SPSS, SAS, and other Statistical Analysis applicatons
 * googlesheets - load data from Google Sheets
+
 ===================================================================================================
 
 ## Identify descriptive characteristics of data objects
@@ -206,22 +209,29 @@ tbl_df(unempdata)
 ### Change colunn header
 
 ```{r}
-unempdata <- rename(unempdata, discriminate = descriminate, no_job = lost_job)
+colnames(unempdata)     # identify the existing column names
+unempdata <- rename(unempdata, discriminate = ` recode: any employment discrimination `, no_job = `lost my job`, no_clients = `removed from direct contact with clients`, promotion = `denied a promotion `)            # rename column names
+
+
+colnames(unempdata)     # Proof that the names where changed by using the reassignment operator
 ```
 
-### Place holder
+### Recode
 
-replace "Not Applicable" with "NA")
-Recode
-
+* Use *Recode* to change the values and supply the NA Characteristics
+    * Replace "Not Applicable" with "NA")
+* Change the character vector to a logical vector
 
 ```{r}
-unempdata$no_job <- gsub("Not Applicable", "NA", unempdata$no_job)
-unempdata$underemployed <- gsub("NA", "na", unempdata$underemployed)
+unempdata$no_job <- recode(unempdata$no_job, No = "FALSE", Yes = "TRUE", "Not Applicable" = NA_character_)
 ```
 
-
-
+```{r}
+class(unempdata$no_job)
+unempdata$no_job <- as.logical(unempdata$no_job)
+tbl_df(unempdata)
+summary(unempdata)
+```
 
 ### FILTER
 
@@ -230,7 +240,3 @@ data("iris")
 
 smokerdata <- read_csv("http://www.cyclismo.org/tutorial/R/_static/smoker.csv")
 
-### is.na
-
-is.na()
-# table(is.na(foo2$Department..Division))
