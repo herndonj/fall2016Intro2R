@@ -264,6 +264,18 @@ tbl_df(four.six)
 arrange(four.six, cyl, desc(mpg), desc(hp), wt, wtdisp)
 ```
 
+*place holder* - set up table for visualzation.  This section will have to move.
+```{r}
+library(stringr)
+four.six$make <- word(four.six$makeModel, 1)
+# str_extract(four.six$makeModel, "\\w+\\s(.*)")
+
+library(stringi)
+# stri_match_all_regex(four.six$makeModel, "\\w+\\s(.*)")[[1]][2]
+# stri_match_last_regex(four.six$makeModel, "\\w+\\s(.*)",)[,2]
+# stri_match_last_regex(four.six$makeModel, "\\w+\\s(.*)", cg_missing = "")[,2]
+four.six$model <- stri_match_last_regex(four.six$makeModel, "\\w+\\s(.*)", cg_missing = "")[,2]
+```
 
 ## Table Summaries
 ```{r}
