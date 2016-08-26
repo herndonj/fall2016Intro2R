@@ -281,14 +281,41 @@ table(smokerdata$Smoke)
 
 ## Visualizations
 
+### Scatter Plot
 ```{r}
 data("iris")
 tbl_df(iris)
 table(iris$Species, iris$Petal.Width)
+
+# scatter plot
+# http://www2.warwick.ac.uk/fac/sci/moac/people/students/peter_cock/r/iris_plots/
+plot(iris$Petal.Length, iris$Petal.Width, main="Edgar Anderson's Iris Data")
 ```
 
-mosaicplot(table(smokerdata))
+### Histogram
+```{r}
+hist(iris$Petal.Width)
 
+hist(table(iris$Petal.Width))
+```
+
+### Bar Plot
+oddly, the next few plots work fine on my console, but they don't knit.  
+```{r}
+# for categorical
+barplot(table(four.six$make))
+sixcyls <- filter(four.six, cyl == 6)
+barplot(table(sixcyls$make))
+barplot(table(sixcyls$make), horiz = TRUE)
+```
+
+### Mosaic Plot
+```{r}
+mosaicplot(table(smokerdata))
+```
+
+### ggPlot
+> here
 
 
 ## String Manipuation
