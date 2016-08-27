@@ -7,6 +7,7 @@
  * check timestamp for indicate of latest file
 
 To run this Rmd
+
 1. upload the .Rmd to docker
 2. run in the console:  library(rmarkdown)
 3. run in the console:  rebder("<latestFilename>.rmd"", output_file = 'Intro2R.html')
