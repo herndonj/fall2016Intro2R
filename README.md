@@ -8,7 +8,7 @@
 
 To run this Rmd
 
-1. Upload the .Rmd to docker(use Files tab in the Help Pane of docker-RStudio)
+1. Upload the .Rmd to docker (use Files tab in the Help Pane of docker-RStudio)
 2. upload the UnempData.xlsx data to docker
 2. Run in the console:  library(rmarkdown)
 3. Run in the console:  render("<latestFilename>.rmd", output_file = 'Intro2R.html')
