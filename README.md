@@ -3,14 +3,14 @@
 ## Project Update:
 * The current state of the project is the **Intro HTML** document (clone or pull, first)
 * The current script is the **.Rmd** script in the [source repository directory](https://bitbucket.org/libjohn/devbb/src/244d0d799157791fd4f9dcc9dd10fe1f884fbaa7?at=master)
- * as of this writing that filename was "Intro-to-R_ver6.Rmd"
- * check timestamp for indication of latest file
+ * As of this writing that filename was "Intro-to-R_ver6.Rmd"
+ * Check timestamp for indication of latest file
 
 To run this Rmd
 
-1. upload the .Rmd to docker
-2. run in the console:  library(rmarkdown)
-3. run in the console:  rebder("<latestFilename>.rmd"", output_file = 'Intro2R.html')
+1. Upload the .Rmd to docker
+2. Run in the console:  library(rmarkdown)
+3. Run in the console:  render("<latestFilename>.rmd", output_file = 'Intro2R.html')
 4. Then you should be able to run code-chunks rom the source pane.
 
 * Remember, this is a **work in progress**.  And it needs a lot more progress
