@@ -1,0 +1,241 @@
+---
+title: "An RMarkdown version of the .r file"
+author: "John & Joel"
+date: "August 22, 2016"
+---
+This is a Thought Bucket -Test Run
+The follow is a test Rmd file to test suitability for an introductory workshop in R.  This is the first .Rmd version based on a [document](https://docs.google.com/document/d/1FUdzDSje_b-0n0fxNrrXiJ11kUC5sNzhYdYmyXu_GFU/edit) Joel & I are working on.  
+
+Workshop Outline
+
+    1. Getting Started, load a few library packages from Hadleyverse
+        i. readxl
+        ii. readr
+        iii. deplyr
+        iv. ggplot2
+    2. Data Structure Types
+        i. Vectors
+        ii. Data Frames
+    3. Variable Assignment Operators
+    4. Data Management
+        i. Identify Working Directory:  getwd()
+        ii. Change Working Directory:  setwd()
+        iii. Loading *data files* - Putting it all together
+    5. Descriptive Characteristics of data objects
+        i. View()
+        ii. class()
+        iii. dim()
+        iv. nrow()
+        v. ncol()
+        vi. str()
+        vii. head()
+        viii. tail()
+        ix summary()
+    5. Using Deplyr for Data Wrangling
+        i. tbl_df()
+        ii. change column names
+        iii. *filter* rows
+        iv. *mutate* columns
+        v. recode
+    6. Data Analysis - Summary descriptive Statistics
+        i. table
+        ii. hist
+        iii. barplot
+        iv. mosaicplot
+    7. Visualizations with ggplot2
+
+===================================================================================================
+
+## Identify Library Packages
+First I'm going to load all the packages I use for this tutorial. Strictly speaking this is a two step process:  (1) install the package; (2) load the package.  I'll include the install commands for [reproducibility](https://en.wikipedia.org/wiki/Reproducibility), but you can probably skip to simply loading the packages.  If any library library doesn't load you can uncomment the "install.packages" command; simply remove the # in front  of the relevant "intall.packages".  Then rerun the relevant install commands followed the relvant load commands.  
+
+A **note** about the number of packages.  You **don't need all** of the packages.  Some packages are a convenience for me as an instructor.  The necessary packages are **readxl**, **readr**,  **dplyr**, and **ggplot2**.  
+
+```{r}
+# If you do not have these packages already loaded in your packages list, you can install them by uncommenting the following lines.
+# install.packages("readxl")    
+# install.packages("readr")		
+# install.packages("dplyr")		
+# install.packages("ggplot2") 
+
+# packages required for this workshop
+library(readxl)		# import Excel files into R - https://github.com/hadley/readxl
+library(readr)      # read tabular data into R - https://github.com/hadley/readr
+library(dplyr)      # working with data frames - https://github.com/hadley/dplyr
+library(ggplot2)    # popular visualization package - https://github.com/hadley/ggplot2
+
+# Optional Library Packages
+library(rmarkdown)  # R specific implementation for markdown - https://github.com/hadley/rmarkdown
+```
+
+===================================================================================================
+
+
+# Intro to R
+Some text may go here
+
+## Data Structre Types 
+The following image from [_First Steps in R_](http://venus.ifca.unican.es/Rintro/dataStruct.html) is a handy visualization to explain the data types available in R
+image:![R Data Types](http://venus.ifca.unican.es/Rintro/_images/dataStructuresNew.png)
+
+As you can see the object orientation of R allows you to be specific about objects characteristics.  These characteristics are called [Data Types](http://venus.ifca.unican.es/Rintro/dataStruct.html) or Data Structures. This specificity can yield a sophisticated outcome but it may lead to confusion for those learning R.  For this workshop we'll stick with two very common data types:  **Vectors** and **Data Frames**
+
+* **Vectors** are one dimentional arrays which must be all of the same mode:  _Numeric_, _Complex_, _Logical_, or _Character_
+* **Data Frames** are generalized matricies.  Different columns can store different types including vectors, lists, Factors, Arrays, and Functions.
+
+For now, remember you can only store one data type in a Vector *but* you can store multipe vector types in a data frame.  But I encourage you to read more about [Data Types](http://venus.ifca.unican.es/Rintro/dataStruct.html), later.
+
+===================================================================================================
+
+## Variable Assignment
+You can assign variable or object names, most commonly using the *<-* operator but there are many equivalent assignment operators
+
+* Assignment Operators 
+    + <<- 
+    + <- 
+    + = 
+    + -> 
+    + ->>
+    
+```{r}
+# Assign "foo" as a three item character vector:  
+foo <- c("apple", "bannana", "grape")
+foo ->> bar
+
+# now recall those objects by name:
+foo
+bar
+```
+
+===================================================================================================
+
+## Data Management
+
+### Download some sample data
+1. Download the [UnempData.xlsx](http://foo.com) file to your download directory.
+2. Move that file to your working directory as identified by the command `getwd()`
+3. Now Load that using assignments and the `read_excel` function
+
+Where will R look for your data?  Identify the R's default data directory.
+```{r}
+getwd()
+```
+
+* You can change the workding directory using setwd()
+    + setwd("c:/somedir/")  
+
+### Tell R to load your data
+
+#### Use assignment operators to construct filepath/filename
+e.g. to read data into a dataframe
+```{r}
+DIR <- getwd()
+filename <- "UnempData.xlsx"
+fullpath <- paste(DIR, "/", filename, sep = '')
+# See value of the constructed character vector
+fullpath                 
+#display the value of fullpath in the console
+```
+
+### Load an excel file (read_excel from readxl package)
+```{r}
+# read the downloaded excel file into a data frame
+# use the read_excel() function, part of the readxl() package loaded earlier
+# To get help using read_excel() type the following into the console:  ?read_excel   [Enter]
+unempdata <- read_excel(fullpath)         
+```
+
+#### Honorable Mention Data Loaders
+* foreign - load data from SPSS, SAS, and other Statistical Analysis applicatons
+* googlesheets - load data from Google Sheets
+
+===================================================================================================
+
+## Identify descriptive characteristics of data objects
+There are various ways to view the data objects in R 
+
+### Displays your data in a grid style within the "Source"" pane
+```{r}
+View(unempdata) 
+```
+
+### Identify the data variable characteristics of the data object
+```{r}
+class(unempdata)
+```
+
+### Identify the dimentions of the data object
+```{r}
+dim(unempdata)
+
+```
+### Identify the number of rows in the data object
+```{r}
+nrow(unempdata)
+```
+### Identify the number of columns in the data object
+```{r}
+ncol(unempdata)
+```
+### Identify the structure of the data object
+```{r}
+str(unempdata)
+```
+### Identify the top rows of the data object
+```{r}
+head(unempdata)
+```
+### Identify the botom twenty rows of the data object
+```{r}
+tail(unempdata, 20)
+```
+### Identify a statistical summary of the data object
+```{r}
+summary(unempdata)
+```
+
+
+==============================================================================
+
+## Use the dplyr packge for some data frame manipulation aka Data Wrangling
+
+```{r}
+# library(dplyr)  # this library packaged was loaded earlier
+tbl_df(unempdata)
+```
+
+
+### Change colunn header
+
+```{r}
+colnames(unempdata)     # identify the existing column names
+unempdata <- rename(unempdata, discriminate = ` recode: any employment discrimination `, no_job = `lost my job`, no_clients = `removed from direct contact with clients`, promotion = `denied a promotion `)            # rename column names
+
+
+colnames(unempdata)     # Proof that the names where changed by using the reassignment operator
+```
+
+### Recode
+
+* Use *Recode* to change the values and supply the NA Characteristics
+    * Replace "Not Applicable" with "NA")
+* Change the character vector to a logical vector
+
+```{r}
+unempdata$no_job <- recode(unempdata$no_job, No = "FALSE", Yes = "TRUE", "Not Applicable" = NA_character_)
+```
+
+```{r}
+class(unempdata$no_job)
+unempdata$no_job <- as.logical(unempdata$no_job)
+tbl_df(unempdata)
+summary(unempdata)
+```
+
+### FILTER
+
+data("mtcars")
+data("iris")
+
+smokerdata <- read_csv("http://www.cyclismo.org/tutorial/R/_static/smoker.csv")
+
