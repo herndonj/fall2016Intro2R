@@ -6,10 +6,12 @@
  * as of this writing that filename was "Intro-to-R_ver6.Rmd"
  * check timestamp for indicate of latest file
 * to run this Rmd
+
   1. upload the .Rmd to docker
   2. run in the console:  library(rmarkdown)
   3. run in the console:  rebder("<latestFilename>.rmd"", output_file = 'Intro2R.html')
   4) Then you should be able to run code-chunks rom the source pane.
+
 * Remember, this is a **work in progress**.  And it needs a lot more progress
 
 
