@@ -1,7 +1,7 @@
 # README
 
 ## Project Update:
-* The current state of the project open the Intro HTML document (clone or pull, first)
+* The current state of the project is the *Intro HTML* document (clone or pull, first)
 
 ## Overview
 * This is a development repository stored on BitBucket
