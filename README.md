@@ -4,7 +4,7 @@
 * The current state of the project is the **Intro HTML** document (clone or pull, first)
 * The current script is the **.Rmd** script in the [source repository directory](https://bitbucket.org/libjohn/devbb/src/244d0d799157791fd4f9dcc9dd10fe1f884fbaa7?at=master)
  * as of this writing that filename was "Intro-to-R_ver6.Rmd"
- * check timestamp for indicate of latest file
+ * check timestamp for indication of latest file
 
 To run this Rmd
 
