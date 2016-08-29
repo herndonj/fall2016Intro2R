@@ -1,0 +1,92 @@
+---
+title: "Wow! 5 Viz in 5 lines in R"
+author: John
+date: 8/29/2016
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    theme: readable
+    highlight: pygments
+---
+
+<!-- render("Intro-to-R_ver6.Rmd", output_file = 'Intro2R.html', output_dir = "output"  ) -->
+
+## Set Up Libraries
+```{r}
+# install.packages("devtools") 
+# devtools::install_github("rstudio/leaflet") 
+# install.packages("quantmod") 
+# install.packages("dygraphs") 
+# install.packages("ggvis")
+# install.packages("corrplot")
+
+library(leaflet)
+library(magrittr)
+library(quantmod)
+library(dygraphs)
+library(ggvis) 
+library(corrplot)
+```
+
+  
+# Wow: Cool R viz in 5 minutes with 5 lines of code.
+(from an article by Sharon Machlis)
+
+## Map of Starbucks
+```{r}
+## Plot all Starbucks locations using OpenStreetMap
+## Credit: http://www.computerworld.com/article/2893271/business-intelligence/5-data-visualizations-in-5-minutes-each-in-5-lines-or-less-of-r.html
+
+file <- "https://opendata.socrata.com/api/views/ddym-zvjk/rows.csv"
+starbucks <- read.csv(file)
+library(leaflet); library(magrittr)
+leaflet() %>% addTiles() %>% setView(-84.3847, 33.7613, zoom = 16) %>% 
+  addMarkers(data = starbucks, lat = ~ Latitude, lng = ~ Longitude, popup = starbucks$Name)
+```
+
+## Graph Anthem stock price
+```{r}
+## Plot last 6 months of ANTM share price
+## Credit: http://www.computerworld.com/article/2893271/business-intelligence/5-data-visualizations-in-5-minutes-each-in-5-lines-or-less-of-r.html
+
+library(quantmod)
+getSymbols("ANTM", auto.assign=TRUE)
+barChart(ANTM, subset = 'last 6 months')
+```
+
+## Graph Atlanta-area unemployment
+```{r}
+## Plot Atlanta area unemployment
+## Credit: http://www.computerworld.com/article/2893271/business-intelligence/5-data-visualizations-in-5-minutes-each-in-5-lines-or-less-of-r.html
+
+library(quantmod)
+getSymbols("ATLA013URN", src = "FRED")
+names(ATLA013URN) = "rate"
+library(dygraphs)
+dygraph(ATLA013URN, main = "Atlanta area unemployment")
+```
+
+## Correlations (adds line to download data)
+```{r}
+# file <- "https://github.com/smach/NICAR15data/raw/master/testscores.csv"
+# testdata <- read.csv(file, stringsAsFactors = FALSE)
+# testdata <- read.csv("data/testscores.csv", stringsAsFactors = FALSE) 
+# library(ggvis) 
+# ggvis(testdata, ~pctpoor, ~score) %>% 
+# layer_points(size := input_slider(10, 310, label="Point size"), opacity := input_slider(0, 1, label="Point opacity")) %>% 
+# layer_model_predictions(model = "lm", stroke := "red", fill := "red") 
+
+
+# and for a correlation matrix 
+# mycorr <- cor(na.omit(testdata[3:6]))
+# library(corrplot)
+# col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))
+# corrplot(mycorr, method="shade", shade.col=NA, tl.col="black", tl.srt=45, col=col(200), addCoef.col="black")
+```
+
+
+
+
+

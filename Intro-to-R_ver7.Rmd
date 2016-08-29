@@ -53,7 +53,11 @@ R is a popular programming environment with embeded statistical capabilities.  T
 See [Download Sample Data](#sample) in Section 4.1
 
 # Wow
-Insert here some Wow examples
+from [5 data visualizations in 5 minutes: each in 5 lines or less of R](http://www.computerworld.com/article/2893271/business-intelligence/5-data-visualizations-in-5-minutes-each-in-5-lines-or-less-of-r.html) by Sharon Machlis[^5]
+
+[This is Cool.  Click Here.  Now!](output/Wow-555.html)
+
+
 
 # Data Structure Types 
 The following image, from [_First Steps in R_](http://venus.ifca.unican.es/Rintro/dataStruct.html) (Ceballos & Cardiel)[^1], is a handy visualization to explain the data types available in R
@@ -375,12 +379,21 @@ mosaicplot(table(smokerdata))
 ## ggPlot
 > here
 
+# Resources
+
+1. data camp
+2. vm-manage/docker/container/r
+2. r-exercises
+2. twotorials
+3. cookboork-r.com
+4. data carpentry
+
 # References
 
 [^1]: [First Steps in R](http://venus.ifca.unican.es/Rintro/index.html) by Maite Ceballos (IFCA) & Nicolás Cardiel (UCM)
 [^2]: [R Tutorial](http://www.cyclismo.org/tutorial/R/) by Kelly Black
 [^3]: [Cross Tablulation](http://www.csse.monash.edu.au/~smarkham/resources/crosstab.htm) by Selby Markham
-
+[^5]: [Five great charts in 5 lines of R code each](http://www.computerworld.com/article/2893271/business-intelligence/5-data-visualizations-in-5-minutes-each-in-5-lines-or-less-of-r.html) by Sharon Machlis
 
 
 
