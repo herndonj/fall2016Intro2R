@@ -33,6 +33,11 @@ library(corrplot)
 **in 5 minutes with 5 lines of code.**
 (from an article by Sharon Machlis)
 
+## Sources
+1. [Revolution Analytics Blog](http://blog.revolutionanalytics.com/2016/08/five-great-charts-in-5-lines-of-r-code-each.html)
+2. [Computer World](http://www.computerworld.com/article/2893271/business-intelligence/5-data-visualizations-in-5-minutes-each-in-5-lines-or-less-of-r.html)
+
+
 ## Map of Starbucks
 ```{r}
 ## Plot all Starbucks locations using OpenStreetMap
