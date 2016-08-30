@@ -12,10 +12,9 @@ To run this Rmd
 1. Upload the .Rmd to docker (use Files tab in the Help Pane of docker-RStudio)
 2. upload the UnempData.csv data to docker
 2. Run in the console:  library(rmarkdown)
-3. Run in the console:  render("<latestFilename>.rmd", output_file = 'Intro2R.html').  
-    i. View the html file!
-    ii. should be able to run code-chunks in the .Rmd 
-    ii. You should be able to run code-chunks in the .Rmd file from the source pane.
+3. Run in the console:  render("<latestFilename>.rmd", output_file = 'Intro2R.html').
+     i.  view the html file
+     ii. option, run code-chunks in the .Rmd
 
 * Remember, this is a **work in progress**.  And it needs a lot more progress
 
