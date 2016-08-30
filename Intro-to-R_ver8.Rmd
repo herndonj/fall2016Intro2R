@@ -249,6 +249,13 @@ colnames(unempdata)     # Proof that the names where changed by using the reassi
 unempdata$no_job <- recode(unempdata$no_job, No = "FALSE", Yes = "TRUE", "Not Applicable" = NA_character_)
 ```
 
+## str_pad() - String Padding
+Leading or Padding zeros
+```{r}
+unempdata$ID <- str_pad(unempdata$ID, 3, pad = "0")
+```
+
+
 ## as.logical()
 Change to vector data type to logical vector (i.e. TRUE / FALSE)
 
@@ -384,7 +391,7 @@ mosaicplot(table(smokerdata))
 
 ## Computing Environment
 
-* [RStudio in the Duke Cloud](https://vm-manage.oit.duke.edu/containers/rstudio).  Duke manages a cloud version of RStudio for you, you don't have to install anything.  RAM is limited to 2GB.  You can easily install R and [RStuido](https://www.rstudio.com/) on your own workstation.  These tools are free.
+* [RStudio in the Duke Cloud](https://vm-manage.oit.duke.edu/containers/rstudio)(docker.)  Duke OIT manages a cloud version of RStudio for the convenience Duke University Community.  The advantage is that you don't have to install anything.  RAM is limited to 2GB.  If you are exceeding that limit,  the tools we're using here are easily installed into your own computing evironment.  R and [RStuido](https://www.rstudio.com/) are free and/or open source.
 
 ## Exercises
 

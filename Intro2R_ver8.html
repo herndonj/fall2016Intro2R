@@ -616,8 +616,13 @@ unempdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(fullpat
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unempdata$no_job &lt;-<span class="st"> </span><span class="kw">recode</span>(unempdata$no_job, <span class="dt">No =</span> <span class="st">&quot;FALSE&quot;</span>, <span class="dt">Yes =</span> <span class="st">&quot;TRUE&quot;</span>, <span class="st">&quot;Not Applicable&quot;</span> =<span class="st"> </span><span class="ot">NA_character_</span>)</code></pre></div>
 </div>
+<div id="str_pad---string-padding" class="section level2">
+<h2><span class="header-section-number">7.4</span> str_pad() - String Padding</h2>
+<p>Leading or Padding zeros</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unempdata$ID &lt;-<span class="st"> </span><span class="kw">str_pad</span>(unempdata$ID, <span class="dv">3</span>, <span class="dt">pad =</span> <span class="st">&quot;0&quot;</span>)</code></pre></div>
+</div>
 <div id="as.logical" class="section level2">
-<h2><span class="header-section-number">7.4</span> as.logical()</h2>
+<h2><span class="header-section-number">7.5</span> as.logical()</h2>
 <p>Change to vector data type to logical vector (i.e. TRUE / FALSE)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(unempdata$no_job)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
@@ -625,36 +630,32 @@ unempdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(fullpat
 <span class="kw">tbl_df</span>(unempdata)</code></pre></div>
 <pre><code>## # A tibble: 50 x 6
 ##       ID discriminate no_job  underemployed     no_clients      promotion
-##    &lt;int&gt;        &lt;chr&gt;  &lt;lgl&gt;          &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;
-## 1      1          Yes  FALSE             No            Yes             No
-## 2      2          Yes  FALSE             No             No             No
-## 3      3          Yes  FALSE             No             No            Yes
-## 4      4          Yes  FALSE             No             No             No
-## 5      5          Yes  FALSE            Yes             No             No
-## 6      6          Yes  FALSE             No             No             No
-## 7      7          Yes   TRUE Not Applicable            Yes             No
-## 8      8          Yes     NA Not Applicable Not Applicable Not Applicable
-## 9      9          Yes  FALSE Not Applicable Not Applicable Not Applicable
-## 10    10          Yes  FALSE             No             No             No
+##    &lt;chr&gt;        &lt;chr&gt;  &lt;lgl&gt;          &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;
+## 1    001          Yes  FALSE             No            Yes             No
+## 2    002          Yes  FALSE             No             No             No
+## 3    003          Yes  FALSE             No             No            Yes
+## 4    004          Yes  FALSE             No             No             No
+## 5    005          Yes  FALSE            Yes             No             No
+## 6    006          Yes  FALSE             No             No             No
+## 7    007          Yes   TRUE Not Applicable            Yes             No
+## 8    008          Yes     NA Not Applicable Not Applicable Not Applicable
+## 9    009          Yes  FALSE Not Applicable Not Applicable Not Applicable
+## 10   010          Yes  FALSE             No             No             No
 ## # ... with 40 more rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(unempdata)</code></pre></div>
-<pre><code>##        ID        discriminate         no_job        underemployed     
-##  Min.   : 1.00   Length:50          Mode :logical   Length:50         
-##  1st Qu.:13.25   Class :character   FALSE:31        Class :character  
-##  Median :25.50   Mode  :character   TRUE :8         Mode  :character  
-##  Mean   :25.50                      NA's :11                          
-##  3rd Qu.:37.75                                                        
-##  Max.   :50.00                                                        
+<pre><code>##       ID            discriminate         no_job        underemployed     
+##  Length:50          Length:50          Mode :logical   Length:50         
+##  Class :character   Class :character   FALSE:31        Class :character  
+##  Mode  :character   Mode  :character   TRUE :8         Mode  :character  
+##                                        NA's :11                          
 ##   no_clients         promotion        
 ##  Length:50          Length:50         
 ##  Class :character   Class :character  
 ##  Mode  :character   Mode  :character  
-##                                       
-##                                       
 ## </code></pre>
 </div>
 <div id="filter---subset-rows" class="section level2">
-<h2><span class="header-section-number">7.5</span> FILTER - subset rows</h2>
+<h2><span class="header-section-number">7.6</span> FILTER - subset rows</h2>
 <p>Filter can take multiple arguments (e.g. cyl &gt;= 4, cyl &lt;= 6)</p>
 <p><strong>Note</strong>: We’re using a new data set</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;mtcars&quot;</span>)      <span class="co"># load the onboard mtcars dataset, part of base R </span>
@@ -675,7 +676,7 @@ unempdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(fullpat
 ## # ... with 22 more rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?mtcars           <span class="co"># get more information about this dataset</span></code></pre></div>
 <div id="filter" class="section level3">
-<h3><span class="header-section-number">7.5.1</span> filter()</h3>
+<h3><span class="header-section-number">7.6.1</span> filter()</h3>
 <p>Make a custom data frame called “four.six” that consists of only the four and six cylinder cars</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">four.six &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcars, mtcars$cyl &lt;<span class="dv">8</span>)      <span class="co">#filter out 8 cylinder cars and make a new data.frame &quot;four.six&quot;</span>
 <span class="kw">tbl_df</span>(four.six)                               <span class="co">#Alas!  now rownames</span></code></pre></div>
@@ -703,7 +704,7 @@ unempdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(fullpat
 </div>
 </div>
 <div id="putting-it-together" class="section level2">
-<h2><span class="header-section-number">7.6</span> Putting it together</h2>
+<h2><span class="header-section-number">7.7</span> Putting it together</h2>
 <ul>
 <li>gather the row names values into a vector and move that data into its own column
 <ul>
@@ -744,7 +745,7 @@ four.six &lt;-<span class="st"> </span><span class="kw">mutate</span>(four.six,
 ## 18     Volvo 142E  21.4     4 121.0   109  4.11 2.780 0.02297521</code></pre>
 </div>
 <div id="arrange-the-data-output" class="section level2">
-<h2><span class="header-section-number">7.7</span> Arrange the data output</h2>
+<h2><span class="header-section-number">7.8</span> Arrange the data output</h2>
 <p>Put the data in a custom order in a data frame display</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(four.six, cyl, <span class="kw">desc</span>(mpg), <span class="kw">desc</span>(hp), wt, wtdisp)</code></pre></div>
 <pre><code>##         makeModel  mpg cyl  disp  hp drat    wt     wtdisp
@@ -768,7 +769,7 @@ four.six &lt;-<span class="st"> </span><span class="kw">mutate</span>(four.six,
 ## 18      Merc 280C 17.8   6 167.6 123 3.92 3.440 0.02052506</code></pre>
 </div>
 <div id="regex-capture-groups" class="section level2">
-<h2><span class="header-section-number">7.8</span> Regex &amp; Capture Groups</h2>
+<h2><span class="header-section-number">7.9</span> Regex &amp; Capture Groups</h2>
 <p>String manipulation. Let’s use some advanced regex to set the data up for the <a href="#viz">Visualization</a> section.</p>
 <ul>
 <li>take the first word (make of automobile) from the makeModel column and put it in its own column.</li>
@@ -907,7 +908,7 @@ smokerdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span 
 <div id="computing-environment" class="section level2">
 <h2><span class="header-section-number">10.1</span> Computing Environment</h2>
 <ul>
-<li><a href="https://vm-manage.oit.duke.edu/containers/rstudio">RStudio in the Duke Cloud</a>. Duke manages a cloud version of RStudio for you, you don’t have to install anything. RAM is limited to 2GB. You can easily install R and <a href="https://www.rstudio.com/">RStuido</a> on your own workstation. These tools are free.</li>
+<li><a href="https://vm-manage.oit.duke.edu/containers/rstudio">RStudio in the Duke Cloud</a>(docker.) Duke OIT manages a cloud version of RStudio for the convenience Duke University Community. The advantage is that you don’t have to install anything. RAM is limited to 2GB. If you are exceeding that limit, the tools we’re using here are easily installed into your own computing evironment. R and <a href="https://www.rstudio.com/">RStuido</a> are free and/or open source.</li>
 </ul>
 </div>
 <div id="exercises" class="section level2">
