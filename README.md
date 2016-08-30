@@ -3,8 +3,8 @@
 ## Project Update:
 * The current state of the project is the **Intro HTML** document (clone or pull, first)
 * The current script is the **.Rmd** script in the [source repository directory](https://bitbucket.org/libjohn/devbb/src/)
- * As of this writing that filename was "Intro-to-R_ver7.Rmd"
- * Latest HTML Report (workshop guide) is "Intro-to-R7.html"
+ * As of this writing that filename was "Intro-to-R_ver8.Rmd"
+ * Latest HTML Report (workshop guide) is "Intro-to-R.html" in the "output" directory
  * Check timestamp for indication of latest file
 
 To run this Rmd
@@ -12,8 +12,9 @@ To run this Rmd
 1. Upload the .Rmd to docker (use Files tab in the Help Pane of docker-RStudio)
 2. upload the UnempData.csv data to docker
 2. Run in the console:  library(rmarkdown)
-3. Run in the console:  render("<latestFilename>.rmd", output_file = 'Intro2R.html').  View the html file!
-4. And, you should be able to run code-chunks rom the source pane.
+3. Run in the console:  render("<latestFilename>.rmd", output_file = 'Intro2R.html').  
+    a. View the html file!
+    b. You should be able to run code-chunks in the .Rmd file from the source pane.
 
 * Remember, this is a **work in progress**.  And it needs a lot more progress
 
