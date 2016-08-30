@@ -252,12 +252,12 @@ div.tocify {
 preamble &lt;-<span class="st"> &quot;This document was last updated&quot;</span>
 modified.date &lt;-<span class="st"> </span><span class="kw">paste</span>(preamble, last.edited, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)
 modified.date</code></pre></div>
-<pre><code>## [1] &quot;This document was last updated 2016-08-29&quot;</code></pre>
-<p>The follow is draft document presenting an introductory workshop in based on a <a href="https://docs.google.com/document/d/1FUdzDSje_b-0n0fxNrrXiJ11kUC5sNzhYdYmyXu_GFU/edit">thought document</a>. The intended audience are students who signed up for the <a href="http://library.duke.edu/data/">Data &amp; Visualization Department</a> <a href="http://library.duke.edu/data/news">Workshop Series</a>: <em>Introduction to R</em>. The first section of this document takes care of loading prelimiary libraries. This prelimary step is documented for those learning R. <strong>Skip ahead</strong> to <a href="#begin">Begin - Intro to R</a>.</p>
+<pre><code>## [1] &quot;This document was last updated 2016-08-30&quot;</code></pre>
+<p>The follow is draft document presenting an introductory workshop in based on a <a href="https://docs.google.com/document/d/1FUdzDSje_b-0n0fxNrrXiJ11kUC5sNzhYdYmyXu_GFU/edit">thought document</a>. The intended audience are students who signed up for the <a href="http://library.duke.edu/data/">Data &amp; Visualization Department</a> <a href="http://library.duke.edu/data/news">Workshop Series</a>: <em>Introduction to R</em>. The first section of this document takes care of loading preliminary libraries. This preliminary step is documented for those learning R. <strong>Skip ahead</strong> to <a href="#begin">Begin - Intro to R</a>.</p>
 <div id="library-packages" class="section level2">
 <h2><span class="header-section-number">0.1</span> Library Packages</h2>
-<p>Load all the packages for this tutorial. Strictly speaking this is a two step process: (1) install the package; (2) load the package. I’ll include the install commands for <a href="https://en.wikipedia.org/wiki/Reproducibility">reproducibility</a>, but you can probably skip to simply loading the packages. If any library doesn’t load, you can uncomment the “install.packages” command for that package (remove the # preceding the relevant “intall.packages” command.) Then, rerun the relevant code-chucks.</p>
-<p>A <strong>note</strong> about the number of packages. The necessary packages that make up the bulk of concepts taught in this workshop are: <strong>readr</strong>, <strong>dplyr</strong>, and <strong>ggplot2</strong>. stringr, and stringi are for string manipulation but we won’t go into great depth as to their use. The rmarkdown library is a ustility that allows me to compose this workshop and create code-chunks. All of the code-chunks can be run just as well in a raw ‘r’ script – we’ll talk about that in the workshop.</p>
+<p>Load all the packages for this tutorial. Strictly speaking this is a two step process: (1) install the package; (2) load the package. I’ll include the install commands for <a href="https://en.wikipedia.org/wiki/Reproducibility">reproducibility</a>, but you can probably skip to simply loading the packages. If any library doesn’t load, you can uncomment the “install.packages” command for that package (remove the # preceding the relevant “install.packages” command.) Then, rerun the relevant code-chucks.</p>
+<p>A <strong>note</strong> about the number of packages. The necessary packages that make up the bulk of concepts taught in this workshop are: <strong>readr</strong>, <strong>dplyr</strong>, and <strong>ggplot2</strong>. stringr, and stringi are for string manipulation but we won’t go into great depth as to their use. The rmarkdown package is a utility that allows me to compose this workshop and create code-chunks. All of the code-chunks can be run just as well in a raw ‘r’ script – we’ll talk about that in the workshop.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># If you do not have these packages already loaded in your packages list, you can install them by uncommenting the following lines.</span>
 <span class="co"># install.packages(&quot;readr&quot;)     </span>
 <span class="co"># install.packages(&quot;dplyr&quot;)     </span>
@@ -278,14 +278,14 @@ modified.date</code></pre></div>
 </div>
 <div id="begin" class="section level1">
 <h1><span class="header-section-number">1</span> Begin - Intro to R</h1>
-<p>R is a popular programming environment with embeded statistical capabilities. The R language is also popular as a data science toolset. If you want to read more about the origins and defintions of <strong>R</strong>, try starting at the <a href="https://en.wikipedia.org/wiki/R_(programming_language)">Wikipedia entry</a>. Our focus in this introduction will develop your skllls working in the <a href="https://www.rstudio.com/">RStudio</a> IDE (development environment.)</p>
+<p>R is a popular programming environment with embedded statistical capabilities. The R language is also popular as a data science toolset. If you want to read more about the origins and definitions of <strong>R</strong>, try starting at the <a href="https://en.wikipedia.org/wiki/R_(programming_language)">Wikipedia entry</a>. Our focus in this introduction will develop your skills working in the <a href="https://www.rstudio.com/">RStudio</a> IDE (development environment.)</p>
 <div id="sample-data" class="section level2">
 <h2><span class="header-section-number">1.1</span> Sample Data</h2>
 <p>See <a href="#sample">Download Sample Data</a> in Section 4.1</p>
 </div>
 </div>
-<div id="wow" class="section level1">
-<h1><span class="header-section-number">2</span> Wow</h1>
+<div id="the-wow-factor" class="section level1">
+<h1><span class="header-section-number">2</span> The Wow Factor</h1>
 <p>from <a href="http://www.computerworld.com/article/2893271/business-intelligence/5-data-visualizations-in-5-minutes-each-in-5-lines-or-less-of-r.html">5 data visualizations in 5 minutes: each in 5 lines or less of R</a> by Sharon Machlis<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
 <p><a href="output/Wow-555.html">This is Cool. Click Here. Now!</a></p>
 </div>
@@ -296,12 +296,12 @@ modified.date</code></pre></div>
 <div id="vectors-and-data-frames" class="section level2">
 <h2><span class="header-section-number">3.1</span> Vectors and Data Frames</h2>
 <ul>
-<li><strong>Vectors</strong> are one dimentional arrays which must be all of the same mode: <em>Numeric</em>, <em>Complex</em>, <em>Logical</em>, or <em>Character</em></li>
+<li><strong>Vectors</strong> are one dimensional arrays which must be all of the same mode: <em>Numeric</em>, <em>Complex</em>, <em>Logical</em>, or <em>Character</em></li>
 <li><em>Factors</em> are vectors used when working with <a href="https://en.wikipedia.org/wiki/Categorical_variable">categorical variables</a>.</li>
-<li><strong>Data Frames</strong> are generalized matricies. Different columns can store different types including vectors, lists, Factors, Arrays, and Functions.</li>
+<li><strong>Data Frames</strong> are generalized matrices. Different columns can store different types including vectors, lists, Factors, Arrays, and Functions.</li>
 <li><a href="http://venus.ifca.unican.es/Rintro/dataStruct.html">More Data Types</a></li>
 </ul>
-<p>For now, remember you can only store one data type in a Vector <em>but</em> you can store multipe vector types in a data frame. I encourage you to read more about Data Types, later.</p>
+<p>For now, remember you can only store one data type in a Vector <em>but</em> you can store multiple vector types in a data frame. I encourage you to read more about Data Types, later.</p>
 </div>
 </div>
 <div id="variable-assignment" class="section level1">
@@ -351,7 +351,7 @@ foo</code></pre></div>
 <div id="setwd" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> setwd()</h3>
 <ul>
-<li>You can change the workding directory using setwd()
+<li>You can change the working directory using setwd()
 <ul>
 <li><code>setwd(&quot;c:/somedir/&quot;)</code></li>
 </ul></li>
@@ -360,7 +360,7 @@ foo</code></pre></div>
 </div>
 <div id="getwd" class="section level2">
 <h2><span class="header-section-number">5.3</span> Construct filepath/filename variable</h2>
-<p>e.g. to read data into a dataframe</p>
+<p>e.g. to read data into a data frame</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DIR &lt;-<span class="st"> </span><span class="kw">getwd</span>()
 filename &lt;-<span class="st"> &quot;UnempData.csv&quot;</span>
 fullpath &lt;-<span class="st"> </span><span class="kw">paste</span>(DIR, <span class="st">&quot;/&quot;</span>, filename, <span class="dt">sep =</span> <span class="st">''</span>)        <span class="co"># paste() to concatenate vectors</span>
@@ -370,7 +370,7 @@ fullpath                          <span class="co">#display the value of fullpat
 </div>
 <div id="upload" class="section level2">
 <h2><span class="header-section-number">5.4</span> Where is my data?</h2>
-<p>If you upload data using any of the following methods in RStudio then you can ignore the preceeding <a href="#getwd">parts about manipulating the files system</a> and directory structure of your computing environment.</p>
+<p>If you upload data using any of the following methods in RStudio then you can ignore the preceding <a href="#getwd">parts about manipulating the files system</a> and directory structure of your computing environment.</p>
 <ul>
 <li>From the Environment/History Pane
 <ul>
@@ -380,7 +380,7 @@ fullpath                          <span class="co">#display the value of fullpat
 <ul>
 <li><code>Files Tab &gt; Upload</code></li>
 </ul></li>
-<li>From the File menubar
+<li>From the File menu bar
 <ul>
 <li><code>File &gt; Open File</code></li>
 </ul></li>
@@ -388,15 +388,15 @@ fullpath                          <span class="co">#display the value of fullpat
 </div>
 <div id="load-a-csv-file" class="section level2">
 <h2><span class="header-section-number">5.5</span> Load a CSV file</h2>
-<p>In this example we use the read_csv() function, part of the <a href="https://github.com/hadley/readr#readr">readr</a> library. We recomend readr because it automatically imports character data as characters. This is an improvement over the default “base R”&quot; approach which automatically converts characters to factors whenever R thinks that’s a good idea. This happens too often in our opinion, hence we recomend using readr.</p>
+<p>In this example we use the read_csv() function, part of the <a href="https://github.com/hadley/readr#readr">readr</a> library. We recommend readr because it automatically imports character data as characters. This is an improvement over the default “base R”&quot; approach which automatically converts characters to factors whenever R thinks that’s a good idea. This happens too often in our opinion, hence we recommend using readr.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># read the uploaded CSV file into a data frame.</span>
 <span class="co"># using the read_csv() function, part of the readr package loaded earlier</span>
 <span class="co"># To get help using read_csv() type the following into the console:  ?read_csv [Enter]</span>
 unempdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(fullpath)</code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
-##   ID = col_character(),
-##   `recode: any employment discrimination` = col_character(),
+##   ID = col_integer(),
+##   `recode: any discrimination` = col_character(),
 ##   `lost my job` = col_character(),
 ##   underemployed = col_character(),
 ##   `removed from direct contact with clients` = col_character(),
@@ -405,16 +405,16 @@ unempdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(fullpat
 </div>
 <div id="honorable-mention-data-loaders" class="section level2">
 <h2><span class="header-section-number">5.6</span> Honorable mention data loaders</h2>
-<p>There are many other types of data you may want to load. Or you may want to load a data set from a URL. Many loading packages are available to support many methods of loadign data. There is also a download package that will download data into your R environment. Some of the more common data loading methods are supported by the following packages:</p>
+<p>There are many other types of data you may want to load. Or you may want to load a data set from a URL. Many loading packages are available to support many methods of loading data. There is also a download package that will download data into your R environment. Some of the more common data loading methods are supported by the following packages:</p>
 <ul>
-<li>foreign - load data from SPSS, SAS, and other Statistical Analysis applicatons</li>
+<li>foreign - load data from SPSS, SAS, and other Statistical Analysis applications</li>
 <li>readxl - load Excel data</li>
 <li>googlesheets - load data from Google Sheets</li>
 </ul>
 </div>
 </div>
 <div id="identify-and-display" class="section level1">
-<h1><span class="header-section-number">6</span> Identify And Display</h1>
+<h1><span class="header-section-number">6</span> Identify and Display</h1>
 <p>There are various methods of identifying the descriptive characteristics of data objects in R.</p>
 <div id="view" class="section level2">
 <h2><span class="header-section-number">6.1</span> View()</h2>
@@ -427,17 +427,17 @@ unempdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(fullpat
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(unempdata)</code></pre></div>
 <pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
 </div>
-<div id="dim---dimentions" class="section level2">
-<h2><span class="header-section-number">6.3</span> dim() - dimentions</h2>
-<p>Identify the dimentions of the data object.</p>
+<div id="dim---dimensions" class="section level2">
+<h2><span class="header-section-number">6.3</span> dim() - dimensions</h2>
+<p>Identify the dimensions of the data object.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(unempdata)</code></pre></div>
-<pre><code>## [1] 104   6</code></pre>
+<pre><code>## [1] 50  6</code></pre>
 </div>
 <div id="nrow---number-of-rows" class="section level2">
 <h2><span class="header-section-number">6.4</span> nrow() - number of rows</h2>
 <p>Identify the number of rows in the data object.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(unempdata)</code></pre></div>
-<pre><code>## [1] 104</code></pre>
+<pre><code>## [1] 50</code></pre>
 </div>
 <div id="ncol---number-of-columns" class="section level2">
 <h2><span class="header-section-number">6.5</span> ncol(); - number of columns</h2>
@@ -449,18 +449,18 @@ unempdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(fullpat
 <h2><span class="header-section-number">6.6</span> str() - Structure</h2>
 <p>Identify the structure of the data object.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(unempdata)</code></pre></div>
-<pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    104 obs. of  6 variables:
-##  $ ID                                      : chr  &quot;0001&quot; &quot;0002&quot; &quot;0003&quot; &quot;0004&quot; ...
-##  $ recode: any employment discrimination   : chr  &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; ...
+<pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    50 obs. of  6 variables:
+##  $ ID                                      : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ recode: any discrimination              : chr  &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; ...
 ##  $ lost my job                             : chr  &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;No&quot; ...
 ##  $ underemployed                           : chr  &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;No&quot; ...
-##  $ removed from direct contact with clients: chr  &quot;No&quot; &quot;Yes&quot; &quot;No&quot; &quot;No&quot; ...
-##  $ denied a promotion                      : chr  &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;Yes&quot; ...
+##  $ removed from direct contact with clients: chr  &quot;Yes&quot; &quot;No&quot; &quot;No&quot; &quot;No&quot; ...
+##  $ denied a promotion                      : chr  &quot;No&quot; &quot;No&quot; &quot;Yes&quot; &quot;No&quot; ...
 ##  - attr(*, &quot;spec&quot;)=List of 2
 ##   ..$ cols   :List of 6
 ##   .. ..$ ID                                      : list()
-##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
-##   .. ..$ recode: any employment discrimination   : list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_integer&quot; &quot;collector&quot;
+##   .. ..$ recode: any discrimination              : list()
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
 ##   .. ..$ lost my job                             : list()
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
@@ -479,70 +479,79 @@ unempdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(fullpat
 <p>Identify the top rows of the data object.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(unempdata)</code></pre></div>
 <pre><code>## # A tibble: 6 x 6
-##      ID recode: any employment discrimination lost my job underemployed
-##   &lt;chr&gt;                                 &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;
-## 1  0001                                   Yes          No            No
-## 2  0002                                   Yes          No            No
-## 3  0003                                   Yes          No            No
-## 4  0004                                   Yes          No            No
-## 5  0005                                   Yes          No            No
-## 6  0006                                   Yes          No           Yes
+##      ID recode: any discrimination lost my job underemployed
+##   &lt;int&gt;                      &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;
+## 1     1                        Yes          No            No
+## 2     2                        Yes          No            No
+## 3     3                        Yes          No            No
+## 4     4                        Yes          No            No
+## 5     5                        Yes          No           Yes
+## 6     6                        Yes          No            No
 ## # ... with 2 more variables: removed from direct contact with
 ## #   clients &lt;chr&gt;, denied a promotion &lt;chr&gt;</code></pre>
 </div>
 <div id="tail---show-last-rows" class="section level2">
 <h2><span class="header-section-number">6.8</span> tail() - show last rows</h2>
-<p>Identify the botom twenty rows of the data object</p>
+<p>Identify the bottom twenty rows of the data object</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(unempdata, <span class="dv">20</span>)   <span class="co"># in this case, show the last 20 rows</span></code></pre></div>
 <pre><code>## # A tibble: 20 x 6
-##       ID recode: any employment discrimination    lost my job
-##    &lt;chr&gt;                                 &lt;chr&gt;          &lt;chr&gt;
-## 1   0085                                   Yes Not Applicable
-## 2   0086                                   Yes             No
-## 3   0087                                   Yes Not Applicable
-## 4   0088                                   Yes             No
-## 5   0089                                   Yes             No
-## 6   0090                                   Yes             No
-## 7   0091                                   Yes             No
-## 8   0092                                   Yes             No
-## 9   0093                                   Yes             No
-## 10  0094                                   Yes            Yes
-## 11  0095                                   Yes            Yes
-## 12  0096                                   Yes            Yes
-## 13  0097                                   Yes             No
-## 14  0098                                   Yes             No
-## 15  0099                                   Yes             No
-## 16  0100                                   Yes             No
-## 17  0101                                   Yes             No
-## 18  0102                                   Yes             No
-## 19  0103                                   Yes             No
-## 20  0104                                   Yes             No
-## # ... with 3 more variables: underemployed &lt;chr&gt;, removed from direct
-## #   contact with clients &lt;chr&gt;, denied a promotion &lt;chr&gt;</code></pre>
+##       ID recode: any discrimination    lost my job  underemployed
+##    &lt;int&gt;                      &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;
+## 1     31                        Yes             No             No
+## 2     32                        Yes            Yes             No
+## 3     33                        Yes Not Applicable Not Applicable
+## 4     34                        Yes Not Applicable Not Applicable
+## 5     35                        Yes Not Applicable Not Applicable
+## 6     36                        Yes             No             No
+## 7     37                        Yes Not Applicable Not Applicable
+## 8     38                        Yes             No            Yes
+## 9     39                        Yes             No            Yes
+## 10    40                        Yes             No            Yes
+## 11    41                        Yes             No Not Applicable
+## 12    42                        Yes             No             No
+## 13    43                        Yes             No             No
+## 14    44                        Yes            Yes            Yes
+## 15    45                        Yes            Yes            Yes
+## 16    46                        Yes            Yes             No
+## 17    47                        Yes             No            Yes
+## 18    48                        Yes             No             No
+## 19    49                        Yes             No             No
+## 20    50                        Yes             No             No
+## # ... with 2 more variables: removed from direct contact with
+## #   clients &lt;chr&gt;, denied a promotion &lt;chr&gt;</code></pre>
 </div>
-<div id="summary---get-summary-statistics-when-availble" class="section level2">
-<h2><span class="header-section-number">6.9</span> summary() - get summary statistics when availble</h2>
+<div id="summary---get-summary-statistics-when-available" class="section level2">
+<h2><span class="header-section-number">6.9</span> summary() - get summary statistics when available</h2>
 <p>Identify a statistical summary of the data object.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(unempdata)</code></pre></div>
-<pre><code>##       ID            recode: any employment discrimination
-##  Length:104         Length:104                           
-##  Class :character   Class :character                     
-##  Mode  :character   Mode  :character                     
-##  lost my job        underemployed     
-##  Length:104         Length:104        
-##  Class :character   Class :character  
-##  Mode  :character   Mode  :character  
-##  removed from direct contact with clients denied a promotion
-##  Length:104                               Length:104        
-##  Class :character                         Class :character  
-##  Mode  :character                         Mode  :character</code></pre>
+<pre><code>##        ID        recode: any discrimination lost my job       
+##  Min.   : 1.00   Length:50                  Length:50         
+##  1st Qu.:13.25   Class :character           Class :character  
+##  Median :25.50   Mode  :character           Mode  :character  
+##  Mean   :25.50                                                
+##  3rd Qu.:37.75                                                
+##  Max.   :50.00                                                
+##  underemployed      removed from direct contact with clients
+##  Length:50          Length:50                               
+##  Class :character   Class :character                        
+##  Mode  :character   Mode  :character                        
+##                                                             
+##                                                             
+##                                                             
+##  denied a promotion
+##  Length:50         
+##  Class :character  
+##  Mode  :character  
+##                    
+##                    
+## </code></pre>
 </div>
 <div id="colnames" class="section level2">
 <h2><span class="header-section-number">6.10</span> colnames()</h2>
 <p>List all column names</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(unempdata)</code></pre></div>
 <pre><code>## [1] &quot;ID&quot;                                      
-## [2] &quot;recode: any employment discrimination&quot;   
+## [2] &quot;recode: any discrimination&quot;              
 ## [3] &quot;lost my job&quot;                             
 ## [4] &quot;underemployed&quot;                           
 ## [5] &quot;removed from direct contact with clients&quot;
@@ -552,52 +561,45 @@ unempdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(fullpat
 <h2><span class="header-section-number">6.11</span> rownames()</h2>
 <p>List all row names</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rownames</span>(unempdata)</code></pre></div>
-<pre><code>##   [1] &quot;1&quot;   &quot;2&quot;   &quot;3&quot;   &quot;4&quot;   &quot;5&quot;   &quot;6&quot;   &quot;7&quot;   &quot;8&quot;   &quot;9&quot;   &quot;10&quot;  &quot;11&quot; 
-##  [12] &quot;12&quot;  &quot;13&quot;  &quot;14&quot;  &quot;15&quot;  &quot;16&quot;  &quot;17&quot;  &quot;18&quot;  &quot;19&quot;  &quot;20&quot;  &quot;21&quot;  &quot;22&quot; 
-##  [23] &quot;23&quot;  &quot;24&quot;  &quot;25&quot;  &quot;26&quot;  &quot;27&quot;  &quot;28&quot;  &quot;29&quot;  &quot;30&quot;  &quot;31&quot;  &quot;32&quot;  &quot;33&quot; 
-##  [34] &quot;34&quot;  &quot;35&quot;  &quot;36&quot;  &quot;37&quot;  &quot;38&quot;  &quot;39&quot;  &quot;40&quot;  &quot;41&quot;  &quot;42&quot;  &quot;43&quot;  &quot;44&quot; 
-##  [45] &quot;45&quot;  &quot;46&quot;  &quot;47&quot;  &quot;48&quot;  &quot;49&quot;  &quot;50&quot;  &quot;51&quot;  &quot;52&quot;  &quot;53&quot;  &quot;54&quot;  &quot;55&quot; 
-##  [56] &quot;56&quot;  &quot;57&quot;  &quot;58&quot;  &quot;59&quot;  &quot;60&quot;  &quot;61&quot;  &quot;62&quot;  &quot;63&quot;  &quot;64&quot;  &quot;65&quot;  &quot;66&quot; 
-##  [67] &quot;67&quot;  &quot;68&quot;  &quot;69&quot;  &quot;70&quot;  &quot;71&quot;  &quot;72&quot;  &quot;73&quot;  &quot;74&quot;  &quot;75&quot;  &quot;76&quot;  &quot;77&quot; 
-##  [78] &quot;78&quot;  &quot;79&quot;  &quot;80&quot;  &quot;81&quot;  &quot;82&quot;  &quot;83&quot;  &quot;84&quot;  &quot;85&quot;  &quot;86&quot;  &quot;87&quot;  &quot;88&quot; 
-##  [89] &quot;89&quot;  &quot;90&quot;  &quot;91&quot;  &quot;92&quot;  &quot;93&quot;  &quot;94&quot;  &quot;95&quot;  &quot;96&quot;  &quot;97&quot;  &quot;98&quot;  &quot;99&quot; 
-## [100] &quot;100&quot; &quot;101&quot; &quot;102&quot; &quot;103&quot; &quot;104&quot;</code></pre>
+<pre><code>##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot;
+## [15] &quot;15&quot; &quot;16&quot; &quot;17&quot; &quot;18&quot; &quot;19&quot; &quot;20&quot; &quot;21&quot; &quot;22&quot; &quot;23&quot; &quot;24&quot; &quot;25&quot; &quot;26&quot; &quot;27&quot; &quot;28&quot;
+## [29] &quot;29&quot; &quot;30&quot; &quot;31&quot; &quot;32&quot; &quot;33&quot; &quot;34&quot; &quot;35&quot; &quot;36&quot; &quot;37&quot; &quot;38&quot; &quot;39&quot; &quot;40&quot; &quot;41&quot; &quot;42&quot;
+## [43] &quot;43&quot; &quot;44&quot; &quot;45&quot; &quot;46&quot; &quot;47&quot; &quot;48&quot; &quot;49&quot; &quot;50&quot;</code></pre>
 </div>
 </div>
 <div id="data-wrangling-with-dplyr" class="section level1">
 <h1><span class="header-section-number">7</span> Data Wrangling with dplyr</h1>
-<p><a href="https://github.com/hadley/dplyr#dplyr">dplyr</a> is a broadly adopted library package to support data manipulation (aka data cleaning, data wrangling, data janitoring, data engineering, etc.)</p>
+<p><a href="https://github.com/hadley/dplyr#dplyr">dplyr</a> is a broadly adopted library package to support data manipulation (aka data cleaning, data wrangling, data janitor, data engineering, etc.)</p>
 <div id="tbl_df" class="section level2">
 <h2><span class="header-section-number">7.1</span> tbl_df</h2>
 <p>A convenient summary of the characteristics of a data frame object</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tbl_df</span>(unempdata)</code></pre></div>
-<pre><code>## # A tibble: 104 x 6
-##       ID recode: any employment discrimination    lost my job
-##    &lt;chr&gt;                                 &lt;chr&gt;          &lt;chr&gt;
-## 1   0001                                   Yes             No
-## 2   0002                                   Yes             No
-## 3   0003                                   Yes             No
-## 4   0004                                   Yes             No
-## 5   0005                                   Yes             No
-## 6   0006                                   Yes             No
-## 7   0007                                   Yes             No
-## 8   0008                                   Yes Not Applicable
-## 9   0009                                   Yes             No
-## 10  0010                                   Yes             No
-## # ... with 94 more rows, and 3 more variables: underemployed &lt;chr&gt;,
-## #   removed from direct contact with clients &lt;chr&gt;, denied a
-## #   promotion &lt;chr&gt;</code></pre>
+<pre><code>## # A tibble: 50 x 6
+##       ID recode: any discrimination    lost my job  underemployed
+##    &lt;int&gt;                      &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;
+## 1      1                        Yes             No             No
+## 2      2                        Yes             No             No
+## 3      3                        Yes             No             No
+## 4      4                        Yes             No             No
+## 5      5                        Yes             No            Yes
+## 6      6                        Yes             No             No
+## 7      7                        Yes            Yes Not Applicable
+## 8      8                        Yes Not Applicable Not Applicable
+## 9      9                        Yes             No Not Applicable
+## 10    10                        Yes             No             No
+## # ... with 40 more rows, and 2 more variables: removed from direct contact
+## #   with clients &lt;chr&gt;, denied a promotion &lt;chr&gt;</code></pre>
 </div>
-<div id="rename---edit-colunn-names" class="section level2">
-<h2><span class="header-section-number">7.2</span> rename() - edit colunn names</h2>
+<div id="rename---edit-column-names" class="section level2">
+<h2><span class="header-section-number">7.2</span> rename() - edit column names</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(unempdata)     <span class="co"># identify the existing column names</span></code></pre></div>
 <pre><code>## [1] &quot;ID&quot;                                      
-## [2] &quot;recode: any employment discrimination&quot;   
+## [2] &quot;recode: any discrimination&quot;              
 ## [3] &quot;lost my job&quot;                             
 ## [4] &quot;underemployed&quot;                           
 ## [5] &quot;removed from direct contact with clients&quot;
 ## [6] &quot;denied a promotion&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unempdata &lt;-<span class="st"> </span><span class="kw">rename</span>(unempdata, <span class="dt">discriminate =</span> <span class="st">`</span><span class="dt">recode: any employment discrimination</span><span class="st">`</span>, <span class="dt">no_job =</span> <span class="st">`</span><span class="dt">lost my job</span><span class="st">`</span>, <span class="dt">no_clients =</span> <span class="st">`</span><span class="dt">removed from direct contact with clients</span><span class="st">`</span>, <span class="dt">promotion =</span> <span class="st">`</span><span class="dt">denied a promotion</span><span class="st">`</span>)            <span class="co"># rename column names</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unempdata &lt;-<span class="st"> </span><span class="kw">rename</span>(unempdata, <span class="dt">discriminate =</span> <span class="st">`</span><span class="dt">recode: any discrimination</span><span class="st">`</span>, <span class="dt">no_job =</span> <span class="st">`</span><span class="dt">lost my job</span><span class="st">`</span>, <span class="dt">no_clients =</span> <span class="st">`</span><span class="dt">removed from direct contact with clients</span><span class="st">`</span>, <span class="dt">promotion =</span> <span class="st">`</span><span class="dt">denied a promotion</span><span class="st">`</span>)            <span class="co"># rename column names</span>
 
 <span class="kw">colnames</span>(unempdata)     <span class="co"># Proof that the names where changed by using the reassignment operator</span></code></pre></div>
 <pre><code>## [1] &quot;ID&quot;            &quot;discriminate&quot;  &quot;no_job&quot;        &quot;underemployed&quot;
@@ -621,30 +623,34 @@ unempdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(fullpat
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unempdata$no_job &lt;-<span class="st"> </span><span class="kw">as.logical</span>(unempdata$no_job)
 <span class="kw">tbl_df</span>(unempdata)</code></pre></div>
-<pre><code>## # A tibble: 104 x 6
+<pre><code>## # A tibble: 50 x 6
 ##       ID discriminate no_job  underemployed     no_clients      promotion
-##    &lt;chr&gt;        &lt;chr&gt;  &lt;lgl&gt;          &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;
-## 1   0001          Yes  FALSE             No             No             No
-## 2   0002          Yes  FALSE             No            Yes             No
-## 3   0003          Yes  FALSE             No             No             No
-## 4   0004          Yes  FALSE             No             No            Yes
-## 5   0005          Yes  FALSE             No             No             No
-## 6   0006          Yes  FALSE            Yes             No             No
-## 7   0007          Yes  FALSE             No             No             No
-## 8   0008          Yes     NA Not Applicable Not Applicable Not Applicable
-## 9   0009          Yes  FALSE             No             No            Yes
-## 10  0010          Yes  FALSE            Yes             No             No
-## # ... with 94 more rows</code></pre>
+##    &lt;int&gt;        &lt;chr&gt;  &lt;lgl&gt;          &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;
+## 1      1          Yes  FALSE             No            Yes             No
+## 2      2          Yes  FALSE             No             No             No
+## 3      3          Yes  FALSE             No             No            Yes
+## 4      4          Yes  FALSE             No             No             No
+## 5      5          Yes  FALSE            Yes             No             No
+## 6      6          Yes  FALSE             No             No             No
+## 7      7          Yes   TRUE Not Applicable            Yes             No
+## 8      8          Yes     NA Not Applicable Not Applicable Not Applicable
+## 9      9          Yes  FALSE Not Applicable Not Applicable Not Applicable
+## 10    10          Yes  FALSE             No             No             No
+## # ... with 40 more rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(unempdata)</code></pre></div>
-<pre><code>##       ID            discriminate         no_job        underemployed     
-##  Length:104         Length:104         Mode :logical   Length:104        
-##  Class :character   Class :character   FALSE:65        Class :character  
-##  Mode  :character   Mode  :character   TRUE :14        Mode  :character  
-##                                        NA's :25                          
+<pre><code>##        ID        discriminate         no_job        underemployed     
+##  Min.   : 1.00   Length:50          Mode :logical   Length:50         
+##  1st Qu.:13.25   Class :character   FALSE:31        Class :character  
+##  Median :25.50   Mode  :character   TRUE :8         Mode  :character  
+##  Mean   :25.50                      NA's :11                          
+##  3rd Qu.:37.75                                                        
+##  Max.   :50.00                                                        
 ##   no_clients         promotion        
-##  Length:104         Length:104        
+##  Length:50          Length:50         
 ##  Class :character   Class :character  
 ##  Mode  :character   Mode  :character  
+##                                       
+##                                       
 ## </code></pre>
 </div>
 <div id="filter---subset-rows" class="section level2">
@@ -699,12 +705,12 @@ unempdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(fullpat
 <div id="putting-it-together" class="section level2">
 <h2><span class="header-section-number">7.6</span> Putting it together</h2>
 <ul>
-<li>gether the rownames values into a vector and move that data into it’s own column
+<li>gather the row names values into a vector and move that data into its own column
 <ul>
 <li>rename the new column: “makeModel”</li>
 </ul></li>
-<li>filter out the 8 cyclinder vehicles with select</li>
-<li>select only a few specfic columns for my data frame</li>
+<li>filter out the 8 cylinder vehicles with select</li>
+<li>select only a few specific columns for my data frame</li>
 <li>add a column by calculating new custom values for a new variable</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">four.six &lt;-<span class="st"> </span><span class="kw">mutate</span>(mtcars, <span class="kw">rownames</span>(mtcars))                 <span class="co">#add the row names as a separate column</span>
@@ -763,9 +769,9 @@ four.six &lt;-<span class="st"> </span><span class="kw">mutate</span>(four.six,
 </div>
 <div id="regex-capture-groups" class="section level2">
 <h2><span class="header-section-number">7.8</span> Regex &amp; Capture Groups</h2>
-<p>String manipulation. Let’s use some advanced regex to set the data up for the <a href="#viz">Visualzation</a> section.</p>
+<p>String manipulation. Let’s use some advanced regex to set the data up for the <a href="#viz">Visualization</a> section.</p>
 <ul>
-<li>take the first word (Automobile Make) from the rownames (Make &amp; Model) and put that in it’s own column.</li>
+<li>take the first word (make of automobile) from the makeModel column and put it in its own column.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># library(stringr)</span>
 four.six$make &lt;-<span class="st"> </span><span class="kw">word</span>(four.six$makeModel, <span class="dv">1</span>)
@@ -898,14 +904,34 @@ smokerdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span 
 </div>
 <div id="resources" class="section level1">
 <h1><span class="header-section-number">10</span> Resources</h1>
+<div id="computing-environment" class="section level2">
+<h2><span class="header-section-number">10.1</span> Computing Environment</h2>
+<ul>
+<li><a href="https://vm-manage.oit.duke.edu/containers/rstudio">RStudio in the Duke Cloud</a>. Duke manages a cloud version of RStudio for you, you don’t have to install anything. RAM is limited to 2GB. You can easily install R and <a href="https://www.rstudio.com/">RStuido</a> on your own workstation. These tools are free.</li>
+</ul>
+</div>
+<div id="exercises" class="section level2">
+<h2><span class="header-section-number">10.2</span> Exercises</h2>
+<p>Reinforce your learning with these exercises and two-minute video tutorials</p>
 <ol style="list-style-type: decimal">
-<li>data camp</li>
-<li>vm-manage/docker/container/r</li>
-<li>r-exercises</li>
-<li>twotorials</li>
-<li>cookboork-r.com</li>
-<li>data carpentry</li>
+<li><a href="http://r-exercises.com/start-here-to-learn-r/">r-exercises</a></li>
+<li><a href="http://www.twotorials.com/">twotorials</a></li>
 </ol>
+</div>
+<div id="comprehensive-online-learning" class="section level2">
+<h2><span class="header-section-number">10.3</span> Comprehensive online learning</h2>
+<ol style="list-style-type: decimal">
+<li><a href="http://www.datacarpentry.org/R-ecology-lesson/">Data Carpentry</a> - Text-based lessons aimed at the research environment for people with no programming experience</li>
+<li><a href="https://www.datacamp.com/courses">DataCamp.com</a> - This free, interactive, online workshop tool helps you learn master the basics</li>
+<li><a href="https://www.lynda.com/R-training-tutorials/1570-0.html">Lynda Online Training</a> - <a href="http://oit.duke.edu/comp-print/training/online/lynda.php">Duke login</a></li>
+</ol>
+</div>
+<div id="solutions-to-common-tasks-and-problems-in-analyzing-data." class="section level2">
+<h2><span class="header-section-number">10.4</span> Solutions to common tasks and problems in analyzing data.</h2>
+<ul>
+<li><a href="http://www.cookbook-r.com/">Cookbook for R</a></li>
+</ul>
+</div>
 </div>
 <div id="references" class="section level1">
 <h1><span class="header-section-number">11</span> References</h1>
