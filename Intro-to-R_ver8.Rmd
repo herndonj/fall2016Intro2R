@@ -21,7 +21,7 @@ modified.date
 The intended audience are students signed up for the [Data & Visualization Department](http://library.duke.edu/data/) [Workshop Series](http://library.duke.edu/data/news): _Introduction to R_.  The first section of this document loads preliminary libraries.  If you don't need to know this now, **Skip ahead**  to [Begin - Intro to R](#begin).
 
 ## Library Packages
-Load all the packages for this tutorial. Strictly speaking this is a two step process:  (1) install the package; (2) load the package.  I'll include the install commands for [reproducibility](https://en.wikipedia.org/wiki/Reproducibility), but you can probably skip to simply loading the packages.  If any library  doesn't load, you can uncomment the "install.packages" command for that package (remove the # preceding the relevant "install.packages" command.)  Then, rerun the relevant code-chucks.  
+Load all the packages for this tutorial. Strictly speaking this is a two step process:  (1) install the package; (2) load the package.  I'll include the install commands for [reproducibility](https://en.wikipedia.org/wiki/Reproducibility), but you can probably skip to simply loading the packages.  If any package  doesn't load, you can uncomment the "install.packages" command for that package (remove the `#` preceding the relevant `install.packages` command.)  Then, rerun the relevant code-chucks.  
 
 A **note** about the number of packages.  The necessary packages that make up the bulk of concepts taught in this workshop are: **readr**,  **dplyr**, and **ggplot2**.  stringr, and stringi are for string manipulation but we won't go into great depth as to their use.  The rmarkdown package is a utility that allows me to compose this workshop and create code-chunks.  All of the code-chunks can be run just as well in a raw 'r' script -- we'll talk about that in the workshop.
 
@@ -43,6 +43,8 @@ library(stringr)    # working with strings
 library(stringi)    # working with strings:  regex & capture groups
 ```
 
+## Hadleyverse
+These days, much of what we try to accomplish within the data universe requires reshaping the data.  The various reshaping activies occur with almost astounding frequency among datasmith.  Much of this activity have been identified as the _Split-Apply-Combine Strategy_[^7] by [Hadley Wickam](http://hadley.nz/).  To do that end, Hadley Wickham has authored or coauthored many packages to augment the base-R functionality in support of this data reshaping.  Hadley's efforts have been so broadly adopted that many people call this suite of packages "Hadleyverse".  We will use many of the Hadleyverse packages in this workshop.  A selection of Hadleyverse packages have been selected and applied in the code-chunk above.  (***jrljrl*** mcgrider)
 
 # Begin - Intro to R {#begin}
 R is a popular programming environment with embedded statistical capabilities.  The R language is also popular as a data science toolset.  If you want to read more about the origins and definitions of **R**, try starting at the [Wikipedia entry](https://en.wikipedia.org/wiki/R_(programming_language)).  Our focus in this introduction will develop your skills working in the [RStudio](https://www.rstudio.com/) IDE (development environment.)  
@@ -99,12 +101,12 @@ bar
 2. Move or [upload](#upload) the file to your working directory as identified by the command [getwd()](#getwd)
 3. Load that data using assignments and the `read_csv` function
 
-### Other Downloading & Loading techniques
+### Other downloading & loading techniques
 **Note**:  You can also
 
 * download a file directory to your working directory
      + `download.file("https://ndownloader.figshare.com/files/5909145?private_link=50e77f2201ac90141e4c", "foo.csv")`
-* load a file [via http](#http-load) -- which you will do later in this workshop.  
+* load a file [via http](#httpload) -- which you will do later in this workshop.  
 
 For now, it's also important to understand how R works with your local file system.  
 
@@ -164,7 +166,7 @@ There are many other types of data you may want to load such as SAS, SPSS, Stata
 There are various methods of identifying the descriptive characteristics of data objects in R.
 
 ## View() 
-Displays your data in a grid style within the Source Editor pane ([screenshot](http://paulyeo21.github.io/cell_bio_gen_lab/images/331f4ea3.rstudio_pane.png).) This is not a reproducible method but many people like to see their data, or at least a grid-like representation of a piece of their data.  For that use the *View()* function; that's View with a *captical V*.
+Display your data in a grid style within the Source Editor pane ([screenshot](http://paulyeo21.github.io/cell_bio_gen_lab/images/331f4ea3.rstudio_pane.png)). The `View()` function is typed with an *uppercase V*.
 ```{r}
 View(unempdata) 
 ```
@@ -181,12 +183,15 @@ Identify the dimensions of the data object.
 dim(unempdata)
 
 ```
+> That's 50 rows, or observations, and six columns, or variables.
+
+
 ## nrow() - number of rows
 Identify the number of rows in the data object.
 ```{r}
 nrow(unempdata)
 ```
-## ncol(); - number of columns
+## ncol() - number of columns
 Identify the number of columns in the data object.
 ```{r}
 ncol(unempdata)
@@ -221,14 +226,15 @@ colnames(unempdata)
 ## rownames()
 List all row names
 ```{r}
-rownames(unempdata)
+rownames(mtcars)       # NOTE:  I used a different data frame, one with actual row names ;-j
 ```
 
 # Data Wrangling with dplyr
-[dplyr](https://github.com/hadley/dplyr#dplyr) is a broadly adopted library package to support data manipulation (aka data cleaning, data wrangling, data janitor, data engineering, etc.)
+[dplyr](https://github.com/hadley/dplyr#dplyr) is a broadly adopted package which supports data manipulation (aka data cleaning, data wrangling, data janitor, data engineering, etc.)
 
 ## tbl_df
-A convenient summary of the characteristics of a data frame object
+`tbl_df()` provides a convenient summary of the characteristics of a data frame object.  This function has similarity with `str()` and many of the functions covered in the preceding section.
+
 ```{r}
 tbl_df(unempdata)
 ```
@@ -236,6 +242,7 @@ tbl_df(unempdata)
 
 ## rename() - edit column names
 
+In the example below, I call the `colnames()` function before and after the `rename()` function so you can see the effect.
 ```{r}
 colnames(unempdata)     # identify the existing column names
 unempdata <- rename(unempdata, discriminate = `recode: any discrimination`, no_job = `lost my job`, no_clients = `removed from direct contact with clients`, promotion = `denied a promotion`)            # rename column names
@@ -270,13 +277,13 @@ summary(unempdata)
 ```
 
 ## FILTER - subset rows
-Filter can take multiple arguments (e.g. cyl >= 4, cyl <= 6)
+`filter()` can take multiple arguments (e.g. cyl >= 4, cyl <= 6)
 
 **Note**: We're using a new data set 
 ```{r}
 data("mtcars")		# load the onboard mtcars dataset, part of base R 
 tbl_df(mtcars)
-?mtcars           # get more information about this dataset
+?mtcars           # get more information about this dataset in the help pane
 ```
 
 ### filter() 
@@ -287,11 +294,11 @@ tbl_df(four.six)                               #Alas!  now rownames
 ```
 
 ## Putting it together
-* gather the row names values into a vector and move that data into its own column
-      + rename the new column:  "makeModel"
-* filter out the 8 cylinder vehicles with select
-* select only a few specific columns for my data frame
-* add a column by calculating new custom values for a new variable
+1. gather the row names values into a vector and move that data into its own column
+      a. rename the new column:  "makeModel"
+2. `select()` only a few specific columns for my data frame
+3. `filter()` out the 8 cylinder vehicles with select
+4. `mutate()` - add a column by calculating new custom values for a new variable
 ```{r}
 four.six <- mutate(mtcars, rownames(mtcars))                 #add the row names as a separate column
 four.six <- rename(four.six, makeModel = `rownames(mtcars)`) #rename the added, auto-named column
@@ -305,18 +312,20 @@ tbl_df(four.six)
 
 
 ## Arrange the data output
-Put the data in a custom order in a data frame display
+`arrange()` the data in a custom order in a data frame display
 ```{r}
 arrange(four.six, cyl, desc(mpg), desc(hp), wt, wtdisp)
 ```
 
 ## Regex & Capture Groups
-String manipulation.  Let's use some advanced regex to set the data up for the [Visualization](#viz) section.
+Now it's time for some advanced string manipulation to set the data up for [Visualization](#viz) in the next section.  String manipulation is pretty common in the world of datasmithing but it's not so easy in [R].  Of course some packages exist to help.  We won't go into too much detail right now but the following two examples enble pattern matching and capture groups which are fundamentals of [regular expressions](https://en.wikipedia.org/wiki/Regular_expression).  But since the inspired focus of [R] is about statistics, we're going to gloss over this for now.  
 
-* take the first word (make of automobile) from the makeModel column and put it in its own column.
+* take the first word (make of automobile) from the makeModel column and put it in its own column
 ```{r}
 # library(stringr)
 four.six$make <- word(four.six$makeModel, 1)
+
+# ignore this next line although it may come in handy to some.
 # str_extract(four.six$makeModel, "\\w+\\s(.*)")
 ```
 
@@ -324,9 +333,10 @@ four.six$make <- word(four.six$makeModel, 1)
 ```{r}
 # library(stringi)
 four.six$model <- stri_match_last_regex(four.six$makeModel, "\\w+\\s(.*)", cg_missing = "")[,2]
+
+# ignore this next two lines although it may come in handy to some.
 # stri_match_all_regex(four.six$makeModel, "\\w+\\s(.*)")[[1]][2]
 # stri_match_last_regex(four.six$makeModel, "\\w+\\s(.*)",)[,2]
-# stri_match_last_regex(four.six$makeModel, "\\w+\\s(.*)", cg_missing = "")[,2]
 ```
 
 # Tables - Cross Tabulations
@@ -334,54 +344,51 @@ Building [cross-tabulated](http://www.csse.monash.edu.au/~smarkham/resources/cro
 
 **Note**: New data set and examples from an [R Tutorial](http://www.cyclismo.org/tutorial/R/tables.html#graphical-views-of-tables) by (Kelly Black)[^2]
 
-## unique() - variable values
-This is contextually related to tables.  Let's display the unique values for the two variables in the data frame. {#http-load}
+## unique() - variable values  {#httpload}
+`unique()` is contextually related to `table()` in that it reveals the unique values within a variable.  To  demonstrate the `table()` function, let's use an example and example data made available from Kelly Black's R Tutorial[^9]
 ```{r}
 # R Tutorial by Kelly Black is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License (2015).
 # http://www.cyclismo.org/tutorial/R/tables.html#graphical-views-of-tables
 smokerdata <- read_csv("http://www.cyclismo.org/tutorial/R/_static/smoker.csv")
-tbl_df(smokerdata)
-unique(smokerdata$Smoke) 
-unique(smokerdata$SES)
+tbl_df(smokerdata)            # Note the structe of the data
+unique(smokerdata$Smoke)      # Note the unique values for the Smoke variable
+unique(smokerdata$SES)        # Note the unique values for the SES variable
 ```
 
 ## table()
+As noted above, `table()` is similar to `unique()` except that it not only reveals the unique variables but it also calculates the frequency of those variables.
 ```{r}
-table(smokerdata)
-table(smokerdata$Smoke)
+table(smokerdata)            # Create a cross tablulation
+table(smokerdata$Smoke)      # Gather frequency data for a single variable
 ```
 
 # Visualizations {#viz}
 
-## Scatter Plot
+## plot() - Scatter Plot
+`plot()` will generate a scatter plot.  To demonstrate this we'll introduce a new dataset, Egar Anderson's Iris Data.  The data contains the measurements in centimeters of various flowers: variable sepal and petal measurements in length and width for 50 flowers from each of 3 species of iris. You can find more information about this dataset by typing `?iris` in the console pane.  The scatter plot example comes from Peter Cock's guide to plotting in [R][^11]. 
 ```{r}
-data("iris")
-tbl_df(iris)
-table(iris$Species, iris$Petal.Width)
+data("iris")        # get the iris data
+tbl_df(iris)        # get some summary characteristics of the data frame
+table(iris$Species, iris$Petal.Width)   # create a cross tablulation
 
 # scatter plot
 # http://www2.warwick.ac.uk/fac/sci/moac/people/students/peter_cock/r/iris_plots/
 plot(iris$Petal.Length, iris$Petal.Width, main="Edgar Anderson's Iris Data")
 ```
 
-## Histogram
+## hist() - Histogram
 ```{r}
 hist(iris$Petal.Width)
-
-hist(table(iris$Petal.Width))
 ```
 
-## Bar Plot
-oddly, the next few plots work fine on my console, but they don't knit.  
+## barplot() - Bar Plot
 ```{r}
-# for categorical
-barplot(table(four.six$make))
 sixcyls <- filter(four.six, cyl == 6)
-barplot(table(sixcyls$make))
+barplot(table(sixcyls$make))          # for categorical data
 barplot(table(sixcyls$make), horiz = TRUE)
 ```
 
-## Mosaic Plot
+## mosaicplot() - Mosaic Plot
 ```{r}
 mosaicplot(table(smokerdata))
 ```
@@ -394,31 +401,34 @@ mosaicplot(table(smokerdata))
 
 ## Computing Environment
 
-* [RStudio in the Duke Cloud](https://vm-manage.oit.duke.edu/containers/rstudio)(docker.)  Duke OIT manages a cloud version of RStudio for the convenience Duke University Community.  The advantage is that you don't have to install anything.  RAM is limited to 2GB.  If you are exceeding that limit,  the tools we're using here are easily installed into your own computing evironment.  R and [RStuido](https://www.rstudio.com/) are free and/or open source.
+* [RStudio in the Duke Cloud](https://vm-manage.oit.duke.edu/containers/rstudio) (docker.)  Duke-OIT manages a cloud version of RStudio for the convenience Duke University Community.  The advantage is that you don't have to install anything.  RAM is limited to 2GB.  If you are exceeding that limit, come into the [Data & Visualization Lab](http://library.duke.edu/), or install the software on your own workstations.  The applications we're using here ([R] & RStudio) are easily installed into your own computing evironment.  R and [RStuido](https://www.rstudio.com/) are free and/or open source.
 
 ## Exercises
 
-Reinforce your learning with these exercises and two-minute video tutorials
+**Reinforce your learning** with these manual exercises or two-minute video tutorials.
 
 1. [r-exercises](http://r-exercises.com/start-here-to-learn-r/)
 2. [twotorials](http://www.twotorials.com/)
 
 ## Comprehensive online learning 
-1. [Data Carpentry](http://www.datacarpentry.org/R-ecology-lesson/) - Text-based lessons aimed at the research environment for people with no programming experience
-2. [DataCamp.com](https://www.datacamp.com/courses) - This free, interactive, online workshop tool helps you learn master the basics
-3. [Lynda Online Training](https://www.lynda.com/R-training-tutorials/1570-0.html) - [Duke login](http://oit.duke.edu/comp-print/training/online/lynda.php)
+1. [Data Carpentry](http://www.datacarpentry.org/R-ecology-lesson/) - Text-based lessons aimed at the research environment and designed for people with no programming experience
+2. [DataCamp.com](https://www.datacamp.com/courses) - This free, interactive, online workshop tool helps you master the basics.  It can be hard to fully grok all the atomistic demands of [R]; this workshop will help
+3. [Lynda Online Training](https://www.lynda.com/R-training-tutorials/1570-0.html) - Includes video description.  Duke University Users, use the [Duke login](http://oit.duke.edu/comp-print/training/online/lynda.php)
 
 ## Solutions to common tasks and problems in analyzing data.
 * [Cookbook for R](http://www.cookbook-r.com/)
+* [Quick-R](http://www.statmethods.net/)
 
 
 # References
 
-[^1]: [First Steps in R](http://venus.ifca.unican.es/Rintro/index.html) by Maite Ceballos (IFCA) & Nicolás Cardiel (UCM)
+[^1]: [First Steps in R](http://venus.ifca.unican.es/Rintro/index.html) by Maite Ceballos (IFCA) & Nicolas Cardiel (UCM)
 [^2]: [R Tutorial](http://www.cyclismo.org/tutorial/R/) by Kelly Black
 [^3]: [Cross Tablulation](http://www.csse.monash.edu.au/~smarkham/resources/crosstab.htm) by Selby Markham
 [^5]: [Five great charts in 5 lines of R code each](http://www.computerworld.com/article/2893271/business-intelligence/5-data-visualizations-in-5-minutes-each-in-5-lines-or-less-of-r.html) by Sharon Machlis
-
+[^7]: [ ^[PDF]^ The Split-Apply-Combine Strategy for Data Analysis](https://www.jstatsoft.org/article/view/.../v40i01.pdf) by H Wickham
+[^9]: [R Tutorial](http://www.cyclismo.org/tutorial/R/tables.html#graphical-views-of-tables) by Kelly Black
+[^11]: [Plotting the Iris Data](http://www2.warwick.ac.uk/fac/sci/moac/people/students/peter_cock/r/iris_plots/) by Peter Cock
 
 
 
