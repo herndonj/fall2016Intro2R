@@ -93,8 +93,8 @@ bar
 
 # Data Management
 
-## Download sample data {#sample}
-### Steps
+## Sample data {#sample}
+### Steps to follow
 1. Download the sample [UnempData.csv](https://ndownloader.figshare.com/files/5909145?private_link=50e77f2201ac90141e4c) file to a  directory on your local workstation.
 2. Move or [upload](#upload) the file to your working directory as identified by the command [getwd()](#getwd)
 3. Load that data using assignments and the `read_csv` function
@@ -103,12 +103,10 @@ bar
 **Note**:  You can also
 
 * download a file directory to your working directory
+     + `download.file("https://ndownloader.figshare.com/files/5909145?private_link=50e77f2201ac90141e4c", "foo.csv")`
+* load a file [via http](#http-load) -- which you will do later in this workshop.  
 
-> download.file("https://ndownloader.figshare.com/files/5909145?private_link=50e77f2201ac90141e4c", "foo.csv")
-
-* load a file via http -- which you will do later in this workshop
-
-But for 
+For now, it's also important to understand how R works with your local file system.  
 
 
 ## R and your file system
@@ -124,7 +122,7 @@ getwd()
 
 
 ## Construct filepath/filename variable {#getwd}
-e.g. to read data into a data frame
+In this section, practice working with your filesystem settings and assigning those values to object names.
 ```{r}
 DIR <- getwd()
 filename <- "UnempData.csv"
@@ -134,7 +132,7 @@ fullpath                          #display the value of fullpath in the console
 ```
 
 ## Where is my data? {#upload}
-If you upload data using any of the following methods in RStudio then you can ignore the preceding [parts about manipulating the files system](#getwd) and directory structure of your computing environment.
+If you upload data using any of the following methods in RStudio you can ignore the preceding [parts about manipulating the files system](#getwd) and directory structure of your computing environment.
 
 * From the Environment/History Pane
       + `Environment Tab > Import Datasets`
@@ -145,7 +143,7 @@ If you upload data using any of the following methods in RStudio then you can ig
 
 ## Load a CSV file
 
-In this example we use the read_csv() function, part of the [readr](https://github.com/hadley/readr#readr) library.  We recommend readr because it automatically imports character data as characters.  This is an improvement over the default "base R"" approach which automatically converts characters to factors whenever R thinks that's a good idea.  This happens too often in our opinion, hence we recommend using readr.
+In this example we use the `read_csv()` function, part of the [readr](https://github.com/hadley/readr#readr) library.  We recommend readr because it automatically imports character data as characters without also automatically assign those characters as factors.  This is an improvement over the default "base R" approach which automatically converts characters to factors whenever R thinks that's a good idea.  This happens too often in our opinion, hence we recommend readr.
 
 ```{r}
 # read the uploaded CSV file into a data frame.
@@ -154,20 +152,19 @@ In this example we use the read_csv() function, part of the [readr](https://gith
 unempdata <- read_csv(fullpath)
 ```
 
-## Honorable mention data loaders
+## Other data loaders
 
-There are many other types of data you may want to load.  Or you may want to load a data set from a URL.  Many loading packages are available to support many methods of loading data.  There is also a download package that will download data into your R environment.  Some of the more common data loading methods are supported by the following packages:
+There are many other types of data you may want to load such as SAS, SPSS, Stata, Excel, Google Sheets, etc.  Loading packages are available to support many methods.  Some of the more common data types are supported by the following packages:
 
 * foreign - load data from SPSS, SAS, and other Statistical Analysis applications
 * readxl - load Excel data
 * googlesheets - load data from Google Sheets
 
-
 # Identify and Display
 There are various methods of identifying the descriptive characteristics of data objects in R.
 
 ## View() 
-Displays your data in a grid style within the "Source"" pane.  This is not a reproducible method but many people like to see their data, or at least a grid-like representation of a piece of their data.  For that use the *View()* function; that's View with a *captical V*.
+Displays your data in a grid style within the Source Editor pane ([screenshot](http://paulyeo21.github.io/cell_bio_gen_lab/images/331f4ea3.rstudio_pane.png).) This is not a reproducible method but many people like to see their data, or at least a grid-like representation of a piece of their data.  For that use the *View()* function; that's View with a *captical V*.
 ```{r}
 View(unempdata) 
 ```
@@ -338,7 +335,7 @@ Building [cross-tabulated](http://www.csse.monash.edu.au/~smarkham/resources/cro
 **Note**: New data set and examples from an [R Tutorial](http://www.cyclismo.org/tutorial/R/tables.html#graphical-views-of-tables) by (Kelly Black)[^2]
 
 ## unique() - variable values
-This is contextually related to tables.  Let's display the unique values for the two variables in the data frame.
+This is contextually related to tables.  Let's display the unique values for the two variables in the data frame. {#http-load}
 ```{r}
 # R Tutorial by Kelly Black is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License (2015).
 # http://www.cyclismo.org/tutorial/R/tables.html#graphical-views-of-tables
