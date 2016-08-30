@@ -14,7 +14,8 @@ To run this Rmd
 2. Run in the console:  library(rmarkdown)
 3. Run in the console:  render("<latestFilename>.rmd", output_file = 'Intro2R.html').  
     i. View the html file!
-    ii. You should be able to run code-chunks in the .Rmd file from the source pane.
+         ii. You should be able to run code-chunks in the .Rmd file from the source pane.
+
 
 * Remember, this is a **work in progress**.  And it needs a lot more progress
 
