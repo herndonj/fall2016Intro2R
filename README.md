@@ -13,8 +13,8 @@ To run this Rmd
 2. upload the UnempData.csv data to docker
 2. Run in the console:  library(rmarkdown)
 3. Run in the console:  render("<latestFilename>.rmd", output_file = 'Intro2R.html').
-     i.  view the html file
-     ii. optionaly, run code-chunks in the .Rmd
+   i.  view the html file
+   ii. optionaly, run code-chunks in the .Rmd
 
 * Remember, this is a **work in progress**.  And it needs a lot more progress
 

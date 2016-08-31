@@ -23,7 +23,7 @@ The intended audience are students signed up for the [Data & Visualization Depar
 ## Library Packages
 Load all the packages for this tutorial. Strictly speaking this is a two step process:  (1) install the package; (2) load the package.  I'll include the install commands for [reproducibility](https://en.wikipedia.org/wiki/Reproducibility), but you can probably skip to simply loading the packages.  If any package  doesn't load, you can uncomment the "install.packages" command for that package (remove the `#` preceding the relevant `install.packages` command.)  Then, rerun the relevant code-chucks.  
 
-A **note** about the number of packages.  The necessary packages that make up the bulk of concepts taught in this workshop are: **readr**,  **dplyr**, and **ggplot2**.  stringr, and stringi are for string manipulation but we won't go into great depth as to their use.  The rmarkdown package is a utility that allows me to compose this workshop and create code-chunks.  All of the code-chunks can be run just as well in a raw 'r' script -- we'll talk about that in the workshop.
+A **note** about the number of packages.  The necessary packages that make up the bulk of concepts taught in this workshop are: **readr**,  **dplyr**, and **ggplot2**.  stringr, and stringi are for string manipulation but we won't go into great depth as to their use.  The rmarkdown package is a utility that allows me to compose this workshop and create code-chunks.  All of the code-chunks can be run just as well in a raw 'r' script.
 
 ```{r}
 # If you do not have these packages already installed in your packages list, you can install them by uncommenting the following lines.
@@ -37,12 +37,12 @@ A **note** about the number of packages.  The necessary packages that make up th
 
 
 # Load packages required for this workshop
-library(rmarkdown)  # R specific implementation of markdown.  helpful in generating an HTML output document - https://github.com/hadley/rmarkdown
-library(readr)      # read tabular data into R - https://github.com/hadley/readr
-library(dplyr)      # working with data frames - https://github.com/hadley/dplyr
-library(ggplot2)    # popular visualization package - https://github.com/hadley/ggplot2
-library(stringr)    # working with strings
-library(stringi)    # working with strings:  regex & capture groups
+require(rmarkdown)  # R specific implementation of markdown.  helpful in generating an HTML output document - https://github.com/hadley/rmarkdown
+require(readr)      # read tabular data into R - https://github.com/hadley/readr
+require(dplyr)      # working with data frames - https://github.com/hadley/dplyr
+require(ggplot2)    # popular visualization package - https://github.com/hadley/ggplot2
+require(stringr)
+require(stringi)
 ```
 
 ## Hadleyverse
@@ -61,30 +61,31 @@ from [5 data visualizations in 5 minutes: each in 5 lines or less of R](http://w
 
 
 # Data Structure Types 
-The following image, from [_First Steps in R_](http://venus.ifca.unican.es/Rintro/dataStruct.html) (Ceballos & Cardiel)[^1], is a handy visualization to explain the data types available in [R]
-image:![R Data Types](http://venus.ifca.unican.es/Rintro/_images/dataStructuresNew.png)
+The following image, from [_First Steps in R_](http://venus.ifca.unican.es/Rintro/dataStruct.html) (Ceballos & Cardiel)[^1], is a handy visualization to explain the data types available in [R].
+
+![R Data Types](http://venus.ifca.unican.es/Rintro/_images/dataStructuresNew.png)
 
 As you can see the object orientation of [R] allows you to be specific, atmostic, about object characteristics.  These characteristics are called _Data Types_ or _Data Structures_. This level of specificity can yield sophisticated outcome but may also lead to confusion, especially with those learning R.  For this workshop we'll stick with two very common data types:  Vectors & Data Frames.
 
 ## Vectors and Data Frames
  
-* **Vectors** are one dimensional arrays which must be all of the same mode:  _Numeric_, _Complex_, _Logical_, or  _Character_
+* **Vectors** are one dimensional arrays in which all values must of the same type:  _Numeric_, _Complex_, _Logical_, or  _Character_
 * _Factors_ are vectors used when working with [categorical variables](https://en.wikipedia.org/wiki/Categorical_variable).
 * **Data Frames** are generalized matrices.  Different columns can store different types including vectors, lists, Factors, Arrays, and Functions.
 * [More Data Types](http://venus.ifca.unican.es/Rintro/dataStruct.html)
 
-For now, remember you can only store one data type in a Vector *but* you can store multiple vector types in a data frame.  I encourage you to read more about Data Types, later.  Because many [R] road blocks occur when the [R] programmer is misunderstanding the data structure of a particular data object.  On the other hand, if you're working with statistics, this level of atomization brings critical and useful functionality.
+For now, remember you can only store one data type in a Vector *but* you can store multiple vector types in a data frame.  I encourage you to read more about Data Types, later.  Simply put, many [R] road blocks occur when the [R] programmer misunderstands the data structure of a particular data object.  On the other hand, if you're working with statistics, this level of atomization brings critical and useful functionality.
 
 
 # Variable Assignment
-Variable or object names are most commonly assigned using the *<-* operator but there are many equivalent assignment operators.
+Variable or object names are most commonly assigned using the `<-` operator but there are many equivalent assignment operators.
 
 * Assignment Operators 
-    + <<- 
-    + <- 
-    + = 
-    + -> 
-    + ->>
+    + `<<-` 
+    + `<-` 
+    + `=` 
+    + `->` 
+    + `->>`
     
 ```{r}
 # Assign "foo" as a three item character vector:  
@@ -100,13 +101,14 @@ bar
 # Data Management
 
 ## Sample data {#sample}
-### Steps to follow
-1. Download the sample [UnempData.csv](https://ndownloader.figshare.com/files/5909145?private_link=50e77f2201ac90141e4c) file to a  directory on your local workstation.
-2. Move or [upload](#upload) the file to your working directory as identified by the command [getwd()](#getwd)
+### Overview process
+1. Download the sample [UnempData.csv](https://ndownloader.figshare.com/files/5909145?private_link=50e77f2201ac90141e4c) file to a  directory on your local workstation.  **Do this now.**
+2. Move or [upload](#upload) the file to your working directory as identified by the command `getwd()`
 3. Load that data using assignments and the `read_csv` function
+4. Skip now to the section **[R] and your file system** (below)
 
 ### Other downloading & loading techniques
-**Note**:  You can also
+**Note**:  You don't need to follow these steps but be aware there many ways to load data
 
 * download a file directory to your working directory
      + `download.file("https://ndownloader.figshare.com/files/5909145?private_link=50e77f2201ac90141e4c", "foo.csv")`
@@ -117,18 +119,18 @@ For now, it's also important to understand how [R] works with your local file sy
 
 ## [R] and your file system
 ### getwd()
-*First*, identify the R's default data directory.
+Identify [R]'s default data directory.
 ```{r}
 getwd()
 ```
 
 ### setwd()
-* You can change the working directory using setwd()
+* You can change the working directory using `setwd()`
     + `setwd("c:/somedir/")`
 
 
 ## Construct filepath/filename variable {#getwd}
-In this section, practice working with your filesystem settings and assigning those values to object names.
+In this section, practice working with your file-system environment variables and assigning those values to object names.
 ```{r}
 DIR <- getwd()
 filename <- "UnempData.csv"
@@ -138,7 +140,7 @@ fullpath                          #display the value of fullpath in the console
 ```
 
 ## Where is my data? {#upload}
-If you upload data using any of the following methods in RStudio you can ignore the preceding [parts about manipulating the files system](#getwd) and directory structure of your computing environment.
+If you upload data using any of the following methods in RStudio then you can ignore the preceding about manipulating the files-system and directory structure.
 
 * From the Environment/History Pane
       + `Environment Tab > Import Datasets`
@@ -149,7 +151,7 @@ If you upload data using any of the following methods in RStudio you can ignore 
 
 ## Load a CSV file
 
-In this example we use the `read_csv()` function, part of the [readr](https://github.com/hadley/readr#readr) library.  We recommend readr because it automatically imports character data as characters without also automatically assign those characters as factors.  This is an improvement over the default "base R" approach which automatically converts characters to factors whenever [R] thinks that's a good idea.  This happens too often in our opinion, hence we recommend readr.
+In this example we use the `read_csv()` function, part of the [readr](https://github.com/hadley/readr#readr) library.  I recommend readr because it automatically imports character data as characters without also automatically assign those characters as factors.  This is an improvement over the default "base-R" approach which automatically converts characters to factors whenever [R] thinks that's a good idea.
 
 ```{r}
 # read the uploaded CSV file into a data frame.
@@ -246,7 +248,7 @@ tbl_df(unempdata)
 
 ## rename() - edit column names
 
-In the example below, I call the `colnames()` function before and after the `rename()` function so you can see the effect.
+In the example below, use the `colnames()` function before and after the `rename()` function so you can see the effect.
 ```{r}
 colnames(unempdata)     # identify the existing column names
 unempdata <- rename(unempdata, discriminate = `recode: any discrimination`, no_job = `lost my job`, no_clients = `removed from direct contact with clients`, promotion = `denied a promotion`)            # rename column names
@@ -286,8 +288,8 @@ summary(unempdata)
 **Note**: We're using a new data set 
 ```{r}
 data("mtcars")		# load the onboard mtcars dataset, part of base-R 
-tbl_df(mtcars)
 ?mtcars           # get more information about this dataset in the help pane
+tbl_df(mtcars)
 ```
 
 ### filter() 
@@ -309,7 +311,7 @@ four.six <- rename(four.six, makeModel = `rownames(mtcars)`) #rename the added, 
 four.six <- select(four.six, makeModel, mpg:wt)              #select only the columns wanted
 four.six <- filter(four.six, cyl >= 4, cyl <=6)              # filter rows
 four.six <- mutate(four.six,
-  wtdisp = wt / disp
+  wtdisp = disp / wt
 )                                                            # augment data
 tbl_df(four.six)
 ```
@@ -322,7 +324,7 @@ arrange(four.six, cyl, desc(mpg), desc(hp), wt, wtdisp)
 ```
 
 ## Regex & Capture Groups
-Now it's time for some advanced string manipulation to set the data up for [Visualization](#viz) in the next section.  String manipulation is pretty common in the world of datasmithing but it's not so easy in [R].  Of course some packages exist to help.  We won't go into too much detail right now but the following two examples enble pattern matching and capture groups which are fundamentals of [regular expressions](https://en.wikipedia.org/wiki/Regular_expression).  But since the inspired focus of [R] is about statistics, we're going to gloss over this for now.  
+Now it's time for some advanced string manipulation to set the data up for [Visualization](#viz) in the next section.  String manipulation is pretty common in the world of datasmithing but it's not so easy in [R].  Of course some packages exist to help.  We won't go into too much detail right now but the following two examples enble pattern matching and capture groups which are fundamentals of [regular expressions](https://en.wikipedia.org/wiki/Regular_expression).  However, I'll gloss over this for now as the inspired focus of [R] is statistics.  
 
 * take the first word (make of automobile) from the makeModel column and put it in its own column
 ```{r}
@@ -340,7 +342,6 @@ four.six$model <- stri_match_last_regex(four.six$makeModel, "\\w+\\s(.*)", cg_mi
 
 # ignore this next two lines although it may come in handy to some.
 # stri_match_all_regex(four.six$makeModel, "\\w+\\s(.*)")[[1]][2]
-# stri_match_last_regex(four.six$makeModel, "\\w+\\s(.*)",)[,2]
 ```
 
 # Tables - Cross Tabulations
@@ -354,7 +355,7 @@ Building [cross-tabulated](http://www.csse.monash.edu.au/~smarkham/resources/cro
 # R Tutorial by Kelly Black is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License (2015).
 # http://www.cyclismo.org/tutorial/R/tables.html#graphical-views-of-tables
 smokerdata <- read_csv("http://www.cyclismo.org/tutorial/R/_static/smoker.csv")
-tbl_df(smokerdata)            # Note the structe of the data
+tbl_df(smokerdata)            # Note the structure of the data
 unique(smokerdata$Smoke)      # Note the unique values for the Smoke variable
 unique(smokerdata$SES)        # Note the unique values for the SES variable
 ```
@@ -369,7 +370,8 @@ table(smokerdata$Smoke)      # Gather frequency data for a single variable
 # Visualizations {#viz}
 
 ## plot() - Scatter Plot
-`plot()` will generate a scatter plot.  To demonstrate this we'll introduce a new dataset, Egar Anderson's Iris Data.  The data contains the measurements in centimeters of various flowers: variable sepal and petal measurements in length and width for 50 flowers from each of 3 species of iris. You can find more information about this dataset by typing `?iris` in the console pane.  The scatter plot example comes from Peter Cock's guide to plotting in [R][^11]. 
+`plot()` will generate a scatter plot.  To demonstrate this I'll introduce a new dataset, Egar Anderson's Iris Data.  The data contains the measurements in centimeters of various flowers: variable sepal and petal measurements in length and width for 50 flowers from each of 3 species of iris. You can find more information about this dataset by typing `?iris` in the console pane.  The scatter plot example comes from Peter Cock's guide to plotting in [R][^11] which will cover the `plot` command in greater detail. 
+
 ```{r}
 data("iris")        # get the iris data
 tbl_df(iris)        # get some summary characteristics of the data frame
@@ -401,11 +403,6 @@ mosaicplot(table(smokerdata))
 > here
 
 # Resources
-
-
-## Computing Environment
-
-* [RStudio in the Duke Cloud](https://vm-manage.oit.duke.edu/containers/rstudio) (docker.)  Duke-OIT manages a cloud version of RStudio for the convenience Duke University Community.  The advantage is that you don't have to install anything.  RAM is limited to 2GB.  If you are exceeding that limit, come into the [Data & Visualization Lab](http://library.duke.edu/), or install the software on your own workstations.  The applications we're using here ([R] & RStudio) are easily installed into your own computing evironment.  [R] and [RStuido](https://www.rstudio.com/) are free and/or open source.
 
 ## Exercises
 
