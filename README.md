@@ -1,7 +1,5 @@
 # README
 
-## foo
-
 ## Project Update:
 * The current state of the project is the **Intro HTML** document (clone or pull, first)
 * The current script is the **.Rmd** script in the [source repository directory](https://bitbucket.org/libjohn/devbb/src/)
