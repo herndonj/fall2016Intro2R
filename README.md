@@ -1,7 +1,7 @@
 # README
 
 ## Project Update:
-* The current .Rmd file is: "Intro-2R-beta.html"
+* The current script file is: "Intro-2R-beta.Rmd"
 
 * Remember, this is a **work in progress**.  And it needs a lot more progress
 
