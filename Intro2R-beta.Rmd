@@ -6,7 +6,7 @@ output:
   html_document:
     toc: true
     toc_float: true
-    number_sections: true
+    number_sections: false
     theme: readable
     highlight: pygments
 ---
@@ -63,16 +63,16 @@ str(mtcars)
 ```
 
 #### Mention ??
-* tbl_df()
-* dim()
-* class()
+* `tbl_df()`
+* `dim()`
+* `class()`
 
 
 ### Missing Data
 
-* is.na()
-* anyNA()
-* na.omit()
+* `is.na()`
+* `anyNA()`
+* `na.omit()`
 
 ## Data Reshaping 
 
@@ -117,9 +117,9 @@ tbl_df(sixcyls) %>%
 mutate(mtcars, rownames(mtcars)) %>% 
   rename(makeModel = `rownames(mtcars)`) %>% 
   filter(cyl >= 4, cyl <= 6) %>% 
-  mutate(dispWt = disp / wt) %>% 
   select(makeModel, mpg:wt) %>%
-  arrange(desc(mpg))
+  mutate(dispWt = disp / wt) %>% 
+  arrange(desc(mpg), wt)
 
 ```
 
@@ -131,11 +131,11 @@ mutate(mtcars, rownames(mtcars)) %>%
 
 ## Basic Vis
 
-When in the data exploratory phase, can generate very basic visualizations with minmal effort.  Vis reporsts will appear in the Viewer Pane.  While you may not want to share these visualizations, the simplicity of generating quick histograms can help you understand your data as you begin thinking about your analysis
+When in the data exploratory phase, you can quickly generate very basic visualizations with minmal effort.  Your visualiations then appear in the Viewer Pane.  While you may not want to share these visualizations, the simplicity of generating quick histograms can help you understand your data as you begin thinking about your analysis.
 
-You can type these commans into your console.
+Type these commans into your console.
 
-Generate
+To generate
 
 * Histogram:  `hist(mtcars$mpg)`
 * Scatterplot: `plot(mtcars$wt, mtcars$mpg)`
