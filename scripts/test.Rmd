@@ -1,0 +1,112 @@
+---
+title: "Stuf-Class"
+author: "john"
+date: "9/1/2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Intro to R
+
+
+## Housekeeping
+
+[Joel]
+
+* whatever you want to say about R/RStudio
+
+e.g.
+
+1. welcom
+2. what is r
+3. what is RStudio
+4. What is a Project
+
+```{r load-packages}
+require(rmarkdown)
+require(dplyr)
+require(ggplot2)
+```
+
+
+
+## Data Management
+
+### Load Data
+```{r get data}
+?mtcars                # To get help, use precede command with '?' 
+data("mtcars")         # load specified data set
+```
+
+##### Mention ??
+
+* Import Dataset 
+
+### View Data in a grid
+```{r view}
+View(mtcars)
+```
+##### Mention  ??
+
+* Environment Pane
+* Sorting
+* A convenience but not "reproducible"
+
+### Structure of Data Object
+
+```{r structure}
+str(mtcars)
+```
+
+#### Mention ??
+* tbl_df()
+* dim()
+* class()
+
+
+### Missing Data
+
+* is.na()
+* anyNA()
+* na.omit()
+
+## Data Reshaping 
+
+### Arrange
+
+```{r arrange}
+arrange(mtcars, cyl, desc(mpg), desc(hp), wt)
+```
+
+### Filter
+
+```{r filter}
+sixcyls <- filter(mtcars, cyl == 6)
+```
+
+> Exercises:  Show sixcyls grid in the source pane.  how many observations?  how many variables?
+
+### Mutate
+
+Add columns
+```{r mutatate}
+sixcyls <- mutate(sixcyls, dispWt = disp / wt)
+```
+
+
+### Select
+
+### Count
+
+### Put it all together
+
+
+## Basic Vis
+
+
+## Better Vis via ggplot2
+
