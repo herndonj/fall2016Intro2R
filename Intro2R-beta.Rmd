@@ -119,8 +119,7 @@ mutate(mtcars, rownames(mtcars)) %>%
   filter(cyl >= 4, cyl <= 6) %>% 
   mutate(dispWt = disp / wt) %>% 
   select(makeModel, mpg:wt) %>%
-  arrange(desc(mpg)) %>% 
-  head(5) -> four.six
+  arrange(desc(mpg))
 
 ```
 
