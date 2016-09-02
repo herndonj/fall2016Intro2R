@@ -2,7 +2,13 @@
 title: "draft for Intro to R class"
 author: "john"
 date: "9/1/2016"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    theme: readable
+    highlight: pygments
 ---
 
 ```{r setup, include=FALSE}
