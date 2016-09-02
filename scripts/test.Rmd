@@ -1,5 +1,5 @@
 ---
-title: "Stuf-Class"
+title: "draft for Intro to R class"
 author: "john"
 date: "9/1/2016"
 output: html_document
@@ -27,9 +27,9 @@ e.g.
 4. What is a Project
 
 ```{r load-packages}
-require(rmarkdown)
-require(dplyr)
-require(ggplot2)
+# require(rmarkdown)
+# require(dplyr)
+# require(ggplot2)
 ```
 
 
@@ -46,15 +46,16 @@ data("mtcars")         # load specified data set
 
 * Import Dataset 
 
-### View Data in a grid
+### View your data in a grid
 ```{r view}
 View(mtcars)
 ```
 ##### Mention  ??
 
-* Environment Pane
-* Sorting
-* A convenience but not "reproducible"
+* An exploratory convenience, not "reproducible" in the sense of generating a report or leaveing a trail of your work
+* Environment Pane has information about data objects
+* View output has sorting 
+
 
 ### Structure of Data Object
 
@@ -93,20 +94,89 @@ sixcyls <- filter(mtcars, cyl == 6)
 ### Mutate
 
 Add columns
-```{r mutatate}
+```{r mutate}
 sixcyls <- mutate(sixcyls, dispWt = disp / wt)
 ```
 
 
 ### Select
+```{r select}
+sixcyls <- select(sixcyls, mpg:wt)
+```
+
 
 ### Count
+```{r count}
+tbl_df(sixcyls) %>% 
+  count(hp)
+```
+
 
 ### Put it all together
+```{r alltogether}
+
+mutate(mtcars, rownames(mtcars)) %>% 
+  rename(makeModel = `rownames(mtcars)`) %>% 
+  filter(cyl >= 4, cyl <= 6) %>% 
+  mutate(dispWt = disp / wt) %>% 
+  select(makeModel, mpg:wt) %>%
+  arrange(desc(mpg)) %>% 
+  head(5) -> four.six
+
+```
+
+#### More information 
+
+* https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html 
+
 
 
 ## Basic Vis
 
+If you're exploring your data you can generate very basic visualizations with minmal effort.  The reports will show up in the Viewer Pane.  While you may not want to share these visualizations, the simplicity of generating quick histograms can help you understand your data as you beging thinking about your analysis
+
+You can type these commans into your console.
+
+Generate
+* Histogram:  `hist(mtcars$mpg)`
+* Scatterplot: `plot(mtcars$wt, mtcars$mpg)`
+* Barplot:  `barplot(table(mtcars$cyl))`
+
 
 ## Better Vis via ggplot2
+
+### ggplot2 Scatter Plot
+```{r ggplot}
+ggplot(mtcars, aes(x=wt, y=mpg)) +
+  geom_point(shape = 1) + 
+  geom_smooth(method = lm)
+```
+
+[more info on ggplot scatterplots](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/)
+
+
+### ggplot2 Bar Graph
+```{r ggbarplot}
+ggplot(data=mtcars, aes(x=cyl)) +
+    geom_bar(stat="count")
+```
+
+[More Information on ggplot bar and line graphs](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/)
+
+### ggplot2 Histogram
+```{r gghist}
+ggplot(mtcars, aes(x=mpg)) +
+    geom_histogram(binwidth=1, colour="black", fill="white")
+```
+
+[More info on ggplot histograms](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2))
+
+#### ggplot2 Line graph
+```{r linegraph}
+ggplot(data=mtcars, aes(x=mpg, y=wt, group=cyl, colour=cyl)) +
+    geom_line() +
+    geom_point()
+```
+
+[More info on Bargraphs](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/)
 
