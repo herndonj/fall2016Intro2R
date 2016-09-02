@@ -27,9 +27,9 @@ e.g.
 4. What is a Project
 
 ```{r load-packages}
-# require(rmarkdown)
-# require(dplyr)
-# require(ggplot2)
+require(rmarkdown)
+require(dplyr)
+require(ggplot2)
 ```
 
 
