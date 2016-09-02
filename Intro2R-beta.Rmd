@@ -170,7 +170,7 @@ ggplot(mtcars, aes(x=mpg)) +
 
 [More info on ggplot histograms](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2))
 
-#### ggplot2 Line graph
+### ggplot2 Line graph
 ```{r linegraph}
 ggplot(data=mtcars, aes(x=mpg, y=wt, group=cyl, colour=cyl)) +
     geom_line() +
