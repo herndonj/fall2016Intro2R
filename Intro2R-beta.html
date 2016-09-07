@@ -291,8 +291,8 @@ div.tocify {
 <div id="view-your-data-in-a-grid" class="section level3">
 <h3>View your data in a grid</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(mtcars)</code></pre></div>
-<div id="mention-1" class="section level5">
-<h5>Mention ??</h5>
+<div id="notes" class="section level5">
+<h5>Notes</h5>
 <ul>
 <li>An exploratory convenience, not “reproducible” in the sense of generating a report or leaveing a trail of your work</li>
 <li>Environment Pane has information about data objects</li>
@@ -315,8 +315,8 @@ div.tocify {
 ##  $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
 ##  $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
 ##  $ carb: num  4 4 1 1 2 1 4 2 2 4 ...</code></pre>
-<div id="mention-2" class="section level4">
-<h4>Mention ??</h4>
+<div id="similar-commands" class="section level4">
+<h4>Similar Commands</h4>
 <ul>
 <li><code>tbl_df()</code></li>
 <li><code>dim()</code></li>
@@ -331,6 +331,9 @@ div.tocify {
 <li><code>anyNA()</code></li>
 <li><code>na.omit()</code></li>
 </ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nadata &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="ot">NA_character_</span>, <span class="st">&quot;fish&quot;</span>, <span class="st">&quot;snake&quot;</span>)
+<span class="kw">is.na</span>(nadata)</code></pre></div>
+<pre><code>## [1] FALSE FALSE  TRUE FALSE FALSE</code></pre>
 </div>
 </div>
 <div id="data-reshaping" class="section level2">

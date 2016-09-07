@@ -49,7 +49,7 @@ data("mtcars")         # load specified data set
 ```{r view}
 View(mtcars)
 ```
-##### Mention  ??
+##### Notes
 
 * An exploratory convenience, not "reproducible" in the sense of generating a report or leaveing a trail of your work
 * Environment Pane has information about data objects
@@ -62,7 +62,7 @@ View(mtcars)
 str(mtcars)
 ```
 
-#### Mention ??
+#### Similar Commands
 * `tbl_df()`
 * `dim()`
 * `class()`
@@ -73,6 +73,13 @@ str(mtcars)
 * `is.na()`
 * `anyNA()`
 * `na.omit()`
+
+```{r missingData}
+nadata <- c("cat", "dog", NA_character_, "fish", "snake")
+is.na(nadata)
+```
+
+
 
 ## Data Reshaping 
 
