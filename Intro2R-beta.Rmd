@@ -21,6 +21,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Housekeeping
 
+(Joel - PPT)
+
 1. welcome
 2. what is r
 3. what is RStudio
@@ -31,9 +33,12 @@ knitr::opts_chunk$set(echo = TRUE)
 require(rmarkdown)
 require(dplyr)
 require(ggplot2)
+mtcars <- rownames_to_column(mtcars, var = "makeModel")
 ```
 
 ## Data Management
+
+(John)
 
 ### Load Data
 ```{r get data}
@@ -41,9 +46,14 @@ require(ggplot2)
 data("mtcars")         # load specified data set
 ```
 
-##### Mention ??
+#### NOTES
 
-* Import Dataset 
+* ENVIRONMENT PANE: Import Dataset 
+  * FILES PANE: Files--Upload
+* `readr::read_csv`
+* `readxl`
+
+
 
 ### View your data in a grid
 ```{r view}
@@ -56,6 +66,7 @@ View(mtcars)
 * View output has sorting 
 
 
+
 ### Structure of Data Object
 
 ```{r structure}
@@ -63,12 +74,21 @@ str(mtcars)
 ```
 
 #### Similar Commands
-* `tbl_df()`
-* `dim()`
-* `class()`
+* `tbl_df()`    # tibbles are modernized data frames
+* `dim()`       # dimensions
+* `class()`     # data type 
+
+#### EXERCISE
+
+1. load dataset  `WestUnionData <- read_csv("http://figshare.org/joel/foo.csv")`
+2. what data type is WestUnionData?
+3) how many observations?
+4) how many variables?
 
 
 ### Missing Data
+
+(Joel)
 
 * `is.na()`
 * `anyNA()`
@@ -76,12 +96,16 @@ str(mtcars)
 
 ```{r missingData}
 nadata <- c("cat", "dog", NA_character_, "fish", "snake")
-is.na(nadata)
+anyNA(nadata)
 ```
 
 
 
 ## Data Reshaping 
+
+(John)
+
+dplyr is a widely adopted r package and makes it easy to use english verbs to reshape your data.
 
 ### Arrange
 
@@ -118,6 +142,20 @@ tbl_df(sixcyls) %>%
 ```
 
 
+#### Exercise 2
+
+**Data Management**
+
+(Joel)
+
+1. arrange
+2. filter
+3. mutate
+4. select
+5. count
+
+(Joel)
+
 ### Put it all together
 ```{r alltogether}
 
@@ -130,11 +168,8 @@ mutate(mtcars, rownames(mtcars)) %>%
 
 ```
 
-#### More information 
 
-* https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html 
-
-
+(John)
 
 ## Basic Vis
 
@@ -153,7 +188,7 @@ To generate
 
 ### ggplot2 Scatter Plot
 ```{r ggplot}
-ggplot(mtcars, aes(x=wt, y=mpg)) +
+ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point(shape = 1) + 
   geom_smooth(method = lm)
 ```
@@ -163,7 +198,7 @@ ggplot(mtcars, aes(x=wt, y=mpg)) +
 
 ### ggplot2 Bar Graph
 ```{r ggbarplot}
-ggplot(data=mtcars, aes(x=cyl)) +
+ggplot(data=mtcars, aes(x = cyl)) +
     geom_bar(stat="count")
 ```
 
@@ -171,7 +206,7 @@ ggplot(data=mtcars, aes(x=cyl)) +
 
 ### ggplot2 Histogram
 ```{r gghist}
-ggplot(mtcars, aes(x=mpg)) +
+ggplot(mtcars, aes(x = mpg)) +
     geom_histogram(binwidth=1, colour="black", fill="white")
 ```
 
@@ -179,7 +214,7 @@ ggplot(mtcars, aes(x=mpg)) +
 
 ### ggplot2 Line graph
 ```{r linegraph}
-ggplot(data=mtcars, aes(x=mpg, y=wt, group=cyl, colour=cyl)) +
+ggplot(data=mtcars, aes(x = mpg, y = wt, group = cyl, colour = cyl)) +
     geom_line() +
     geom_point()
 ```
