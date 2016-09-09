@@ -33,7 +33,6 @@ knitr::opts_chunk$set(echo = TRUE)
 require(rmarkdown)
 require(dplyr)
 require(ggplot2)
-mtcars <- rownames_to_column(mtcars, var = "makeModel")
 ```
 
 ## Data Management
@@ -160,11 +159,11 @@ tbl_df(sixcyls) %>%
 ```{r alltogether}
 
 mutate(mtcars, rownames(mtcars)) %>% 
+  rename(makeModel = `rownames(mtcars)`) %>% 
   filter(cyl >= 4, cyl <= 6) %>% 
   select(makeModel, mpg:wt) %>%
   mutate(dispWt = disp / wt) %>% 
   arrange(desc(mpg), wt)
-
 ```
 
 
