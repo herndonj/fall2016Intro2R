@@ -1,0 +1,228 @@
+---
+title: "draft for Intro to R class"
+author: "john"
+date: "9/1/2016"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: false
+    theme: readable
+    highlight: pygments
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Intro to R
+
+
+## Housekeeping
+
+#### Joel - PPT
+
+1. welcome
+2. what is r
+3. what is RStudio
+4. What is a Project
+5. What is Docker
+
+```{r load-packages}
+require(rmarkdown)
+require(dplyr)
+require(ggplot2)
+```
+
+## Data Management
+
+#### John
+
+### Load Data
+```{r get data}
+data("mtcars")         # load specified data set
+```
+
+#### NOTES
+
+* ENVIRONMENT PANE: Import Dataset 
+    * FILES PANE: Files--Upload
+* `readr::read_csv`
+* `readxl`
+
+* To get help, use precede command with '?' 
+    * `?mtcars`
+
+
+
+### View your data in a grid
+```{r view}
+View(mtcars)
+```
+##### Notes
+
+* An exploratory convenience, not "reproducible" in the sense of generating a report or leaving a trail of your work
+* Environment Pane has information about data objects
+* View output has sorting 
+
+
+
+### Structure of Data Object
+
+```{r structure}
+str(mtcars)
+```
+
+#### Similar Commands
+* `tbl_df()`    # tibbles are modernized data frames
+* `dim()`       # dimensions
+* `class()`     # data type 
+
+#### EXERCISE
+
+1. load dataset  `WestUnionData <- read_csv("http://figshare.org/joel/foo.csv")`
+2. what data type is WestUnionData?
+3) how many observations?
+4) how many variables?
+
+
+### Missing Data
+
+#### Joel
+
+* `is.na()`
+* `anyNA()`
+* `na.omit()`
+
+```{r missingData}
+nadata <- c("cat", "dog", NA_character_, "fish", "snake")
+anyNA(nadata)
+```
+
+
+
+## Data Reshaping 
+
+#### John
+
+dplyr is a widely adopted r package and makes it easy to use english verbs to reshape your data.
+
+### Arrange
+
+```{r arrange}
+arrange(mtcars, cyl, desc(mpg), desc(hp), wt)
+```
+
+### Filter
+
+```{r filter}
+sixcyls <- filter(mtcars, cyl == 6)
+```
+
+### Mutate
+
+Add columns
+```{r mutate}
+sixcyls <- mutate(sixcyls, dispWt = disp / wt)
+```
+
+
+### Select
+```{r select}
+sixcyls <- select(sixcyls, mpg:wt)
+```
+
+
+### Count
+```{r count}
+tbl_df(sixcyls) %>% 
+  count(hp)
+```
+
+
+#### Exercise 2
+
+**Data Management**
+
+#### Joel
+
+1. `arrange()`
+2. `filter()`
+3. `mutate()`
+4. `select()`
+5. `count()`
+
+#### Joel
+
+### Put it all together
+```{r alltogether}
+
+mutate(mtcars, rownames(mtcars)) %>% 
+  rename(makeModel = `rownames(mtcars)`) %>% 
+  filter(cyl >= 4, cyl <= 6) %>% 
+  select(makeModel, mpg:wt) %>%
+  mutate(dispWt = disp / wt) %>% 
+  arrange(desc(mpg), wt)
+```
+
+
+#### John
+
+## Basic Vis
+
+When in the data exploratory phase, you can quickly generate very basic visualizations with minmal effort.  Your visualiations then appear in the Viewer Pane.  While you may not want to share these visualizations, the simplicity of generating quick histograms can help you understand your data as you begin thinking about your analysis.
+
+Type these commans into your console.
+
+To generate
+
+* Histogram:  `hist(mtcars$mpg)`
+* Scatterplot: `plot(mtcars$wt, mtcars$mpg)`
+* Barplot:  `barplot(table(mtcars$cyl))`
+
+
+## Better Vis via ggplot2
+
+### ggplot2 Scatter Plot
+```{r ggplot}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(shape = 1) + 
+  geom_smooth(method = lm)
+```
+
+[more info on ggplot scatterplots](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/)
+
+
+### ggplot2 Bar Graph
+```{r ggbarplot}
+ggplot(data=mtcars, aes(x = cyl)) +
+    geom_bar(stat="bin")
+```
+
+```{r ggbarplot2}
+mutate(mtcars, cyl = factor(cyl, labels = c("four","six","eight"))) %>% 
+  ggplot(aes(x = cyl)) +
+    geom_bar(stat="count")
+```
+
+
+[More Information on ggplot bar and line graphs](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/)
+
+### ggplot2 Histogram
+```{r gghist}
+ggplot(mtcars, aes(x = mpg)) +
+    geom_histogram(binwidth=1, colour="black", fill="white")
+```
+
+[More info on ggplot histograms](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2))
+
+### ggplot2 Line graph
+```{r linegraph}
+ggplot(data=mtcars, aes(x = mpg, y = wt, group = cyl, colour = cyl)) +
+    geom_line() #+
+    #geom_point()
+```
+
+[More info on line graphs](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/)
+
