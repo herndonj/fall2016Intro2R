@@ -1,7 +1,7 @@
 ---
-title: "draft for Intro to R class"
-author: "john"
-date: "9/1/2016"
+title: "Intro to R by Data & Visualization Services"
+author: "Joel Herndon & John Little"
+date: "9/12/2016"
 output: 
   html_document:
     toc: true
