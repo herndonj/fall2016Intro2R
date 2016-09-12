@@ -33,7 +33,6 @@ knitr::opts_chunk$set(echo = TRUE)
 require(rmarkdown)
 require(dplyr)
 require(ggplot2)
-require(readr)
 ```
 
 ## Data Management
@@ -42,7 +41,7 @@ require(readr)
 
 ### Load Data
 ```{r get data}
-mtcars <- read_csv("https://ndownloader.figshare.com/files/5960016?private_link=408e6198afbfd3923e71")
+data("mtcars")         # load specified data set
 ```
 
 #### NOTES
@@ -159,7 +158,8 @@ tbl_df(sixcyls) %>%
 ### Put it all together
 ```{r alltogether}
 
-mutate(mtcars) %>% 
+mutate(mtcars, rownames(mtcars)) %>% 
+  rename(makeModel = `rownames(mtcars)`) %>% 
   filter(cyl >= 4, cyl <= 6) %>% 
   select(makeModel, mpg:wt) %>%
   mutate(dispWt = disp / wt) %>% 
