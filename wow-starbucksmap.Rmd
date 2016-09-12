@@ -1,19 +1,29 @@
 # 5 lines of code for a map[^1]
 
+```{r load-packages}
+require(readr) 
+require(leaflet)
+library(dplyr)
+```
+
+
 ## Load Data
 ```{r loaddata}
-require(readr) ; require(leaflet); library(magrittr)
 starbucks <- read_csv("https://opendata.socrata.com/api/views/ddym-zvjk/rows.csv")
 ```
 
+## Filter to NC
 ```{r count}
-tbl_df(starbucks)  %>%  filter(State == "NC") -> starbucks
+tbl_df(starbucks)  %>%  
+  filter(State == "NC") -> starbucks
 ```
 
 
 ## Make the Map
 ```{r makemap}
-leaflet() %>% addTiles() %>% setView(-78.8310, 35.9867, zoom = 10) %>% 
+leaflet() %>% 
+  addTiles() %>% 
+  setView(-78.8310, 35.9867, zoom = 10) %>% 
   addMarkers(data = starbucks, lat = ~ Latitude, lng = ~ Longitude, popup = starbucks$Name)
 ```
 
