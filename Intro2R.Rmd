@@ -23,11 +23,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### Joel - PPT
 
-1. welcome
-2. what is r
-3. what is RStudio
+1. Welcome
+2. What is r
+3. What is [RStudio](https://www.rstudio.com/)
 4. What is a Project
-5. What is Docker
+5. What is [Docker](https://vm-manage.oit.duke.edu/containers/rstudio)
 
 ```{r load-packages}
 require(rmarkdown)
