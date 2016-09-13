@@ -42,7 +42,8 @@ require(readr)
 
 ### Load Data
 ```{r get data}
-mtcars <- read_csv("https://ndownloader.figshare.com/files/5960016?private_link=408e6198afbfd3923e71")
+# mtcars <- read_csv("https://ndownloader.figshare.com/files/5960016?private_link=408e6198afbfd3923e71")
+cars <- read_csv("cars.csv")
 ```
 
 #### NOTES
@@ -53,13 +54,13 @@ mtcars <- read_csv("https://ndownloader.figshare.com/files/5960016?private_link=
 * `readxl`
 
 * To get help, use precede command with '?' 
-    * `?mtcars`
+    * `?cars`
 
 
 
 ### View your data in a grid
 ```{r view}
-View(mtcars)
+View(cars)
 ```
 ##### Notes
 
@@ -72,7 +73,7 @@ View(mtcars)
 ### Structure of Data Object
 
 ```{r structure}
-str(mtcars)
+str(cars)
 ```
 
 #### Similar Commands
@@ -112,13 +113,13 @@ dplyr is a widely adopted r package and makes it easy to use English verbs to re
 ### Arrange
 
 ```{r arrange}
-arrange(mtcars, cyl, desc(mpg), desc(hp), wt)
+arrange(cars, cyl, desc(mpg), desc(hp), wt)
 ```
 
 ### Filter
 
 ```{r filter}
-sixcyls <- filter(mtcars, cyl == 6)
+sixcyls <- filter(cars, cyl == 6)
 ```
 
 ### Mutate
@@ -159,7 +160,7 @@ tbl_df(sixcyls) %>%
 ### Put it all together
 ```{r alltogether}
 
-mutate(mtcars) %>% 
+mutate(cars) %>% 
   filter(cyl >= 4, cyl <= 6) %>% 
   select(makeModel, mpg:wt) %>%
   mutate(dispWt = disp / wt) %>% 
@@ -177,16 +178,16 @@ Type these commands into your console.
 
 To generate
 
-* Histogram:  `hist(mtcars$mpg)`
-* Scatterplot: `plot(mtcars$wt, mtcars$mpg)`
-* Barplot:  `barplot(table(mtcars$cyl))`
+* Histogram:  `hist(cars$mpg)`
+* Scatterplot: `plot(cars$wt, cars$mpg)`
+* Barplot:  `barplot(table(cars$cyl))`
 
 
 ## Better Vis via ggplot2
 
 ### ggplot2 Scatter Plot
 ```{r ggplot}
-ggplot(mtcars, aes(x = wt, y = mpg)) +
+ggplot(cars, aes(x = wt, y = mpg)) +
   geom_point(shape = 1) + 
   geom_smooth(method = lm)
 ```
@@ -196,12 +197,12 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 
 ### ggplot2 Bar Graph
 ```{r ggbarplot}
-ggplot(data=mtcars, aes(x = cyl)) +
+ggplot(data=cars, aes(x = cyl)) +
     geom_bar(stat="bin")
 ```
 
 ```{r ggbarplot2}
-mutate(mtcars, cyl = factor(cyl, labels = c("four","six","eight"))) %>% 
+mutate(cars, cyl = factor(cyl, labels = c("four","six","eight"))) %>% 
   ggplot(aes(x = cyl)) +
     geom_bar(stat="count")
 ```
@@ -211,7 +212,7 @@ mutate(mtcars, cyl = factor(cyl, labels = c("four","six","eight"))) %>%
 
 ### ggplot2 Histogram
 ```{r gghist}
-ggplot(mtcars, aes(x = mpg)) +
+ggplot(cars, aes(x = mpg)) +
     geom_histogram(binwidth=1, colour="black", fill="white")
 ```
 
@@ -219,7 +220,7 @@ ggplot(mtcars, aes(x = mpg)) +
 
 ### ggplot2 Line graph
 ```{r linegraph}
-ggplot(data=mtcars, aes(x = mpg, y = wt, group = cyl, colour = cyl)) +
+ggplot(data=cars, aes(x = mpg, y = wt, group = cyl, colour = cyl)) +
     geom_line() #+
     #geom_point()
 ```
