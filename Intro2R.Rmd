@@ -42,7 +42,6 @@ require(readr)
 
 ### Load Data
 ```{r get data}
-# mtcars <- read_csv("https://ndownloader.figshare.com/files/5960016?private_link=408e6198afbfd3923e71")
 cars <- read_csv("cars.csv")
 ```
 
@@ -60,7 +59,9 @@ cars <- read_csv("cars.csv")
 
 ### View your data in a grid
 
+```{r}
 View(cars)
+```
 
 
 ##### Notes
@@ -82,28 +83,10 @@ str(cars)
 * `dim()`       # dimensions
 * `class()`     # data type 
 
-#### EXERCISE
+## EXERCISE, Part One
 
-1. load dataset  `WestUnionData <- read_csv("http://figshare.org/joel/foo.csv")`
-2. what data type is WestUnionData?
-3) how many observations?
-4) how many variables?
-
-
-### Missing Data
-
-#### Joel
-
-* `is.na()`
-* `anyNA()`
-* `na.omit()`
-
-```{r missingData}
-nadata <- c("cat", "dog", NA_character_, "fish", "snake")
-anyNA(nadata)
-```
-
-
+1. Student_Assignments.Rmd::PART ONE
+**Loading Data**
 
 ## Data Reshaping 
 
@@ -144,11 +127,10 @@ tbl_df(sixcyls) %>%
 ```
 
 
-#### Exercise 2
+## EXERCISE, Part 2
 
+2. Student_Assignments.Rmd::PART TWO
 **Data Management**
-
-#### Joel
 
 1. `arrange()`
 2. `filter()`
