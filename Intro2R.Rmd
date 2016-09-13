@@ -59,9 +59,10 @@ cars <- read_csv("cars.csv")
 
 
 ### View your data in a grid
-```{r view}
+
 View(cars)
-```
+
+
 ##### Notes
 
 * An exploratory convenience, not "reproducible" in the sense of generating a report or leaving a trail of your work
