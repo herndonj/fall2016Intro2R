@@ -49,12 +49,7 @@ cars <- read_csv("cars.csv")
 
 * ENVIRONMENT PANE: Import Dataset 
     * FILES PANE: Files--Upload
-* `readr::read_csv`
 * `readxl`
-
-* To get help, use precede command with '?' 
-    * `?cars`
-
 
 
 ### View your data in a grid
@@ -63,8 +58,7 @@ cars <- read_csv("cars.csv")
 View(cars)
 ```
 
-
-##### Notes
+#### Notes
 
 * An exploratory convenience, not "reproducible" in the sense of generating a report or leaving a trail of your work
 * Environment Pane has information about data objects

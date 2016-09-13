@@ -285,8 +285,7 @@ div.tocify {
 </div>
 <div id="load-data" class="section level3">
 <h3>Load Data</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># mtcars &lt;- read_csv(&quot;https://ndownloader.figshare.com/files/5960016?private_link=408e6198afbfd3923e71&quot;)</span>
-cars &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cars &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars.csv&quot;</span>)</code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   mpg = col_double(),
@@ -309,20 +308,15 @@ cars &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class=
 <ul>
 <li>FILES PANE: Files–Upload</li>
 </ul></li>
-<li><code>readr::read_csv</code></li>
-<li><p><code>readxl</code></p></li>
-<li>To get help, use precede command with ‘?’
-<ul>
-<li><code>?cars</code></li>
-</ul></li>
+<li><code>readxl</code></li>
 </ul>
 </div>
 </div>
 <div id="view-your-data-in-a-grid" class="section level3">
 <h3>View your data in a grid</h3>
-<p>View(cars)</p>
-<div id="notes-1" class="section level5">
-<h5>Notes</h5>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(cars)</code></pre></div>
+<div id="notes-1" class="section level4">
+<h4>Notes</h4>
 <ul>
 <li>An exploratory convenience, not “reproducible” in the sense of generating a report or leaving a trail of your work</li>
 <li>Environment Pane has information about data objects</li>
@@ -383,32 +377,13 @@ cars &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class=
 <li><code>class()</code> # data type</li>
 </ul>
 </div>
-<div id="exercise" class="section level4">
-<h4>EXERCISE</h4>
+</div>
+</div>
+<div id="exercise-part-one" class="section level2">
+<h2>EXERCISE, Part One</h2>
 <ol style="list-style-type: decimal">
-<li>load dataset <code>WestUnionData &lt;- read_csv(&quot;http://figshare.org/joel/foo.csv&quot;)</code></li>
-<li>what data type is WestUnionData?</li>
+<li>Student_Assignments.Rmd::PART ONE <strong>Loading Data</strong></li>
 </ol>
-<ol start="3" style="list-style-type: decimal">
-<li>how many observations?</li>
-<li>how many variables?</li>
-</ol>
-</div>
-</div>
-<div id="missing-data" class="section level3">
-<h3>Missing Data</h3>
-<div id="joel" class="section level4">
-<h4>Joel</h4>
-<ul>
-<li><code>is.na()</code></li>
-<li><code>anyNA()</code></li>
-<li><code>na.omit()</code></li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nadata &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="ot">NA_character_</span>, <span class="st">&quot;fish&quot;</span>, <span class="st">&quot;snake&quot;</span>)
-<span class="kw">anyNA</span>(nadata)</code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-</div>
-</div>
 </div>
 <div id="data-reshaping" class="section level2">
 <h2>Data Reshaping</h2>
@@ -458,23 +433,20 @@ cars &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class=
 ## 2   110     3
 ## 3   123     2
 ## 4   175     1</code></pre>
-<div id="exercise-2" class="section level4">
-<h4>Exercise 2</h4>
-<p><strong>Data Management</strong></p>
 </div>
-<div id="joel-1" class="section level4">
-<h4>Joel</h4>
-<ol style="list-style-type: decimal">
+</div>
+<div id="exercise-part-2" class="section level2">
+<h2>EXERCISE, Part 2</h2>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Student_Assignments.Rmd::PART TWO <strong>Data Management</strong></p></li>
 <li><code>arrange()</code></li>
 <li><code>filter()</code></li>
 <li><code>mutate()</code></li>
 <li><code>select()</code></li>
-<li><code>count()</code></li>
+<li><p><code>count()</code></p></li>
 </ol>
-</div>
-<div id="joel-2" class="section level4">
+<div id="joel" class="section level4">
 <h4>Joel</h4>
-</div>
 </div>
 <div id="put-it-all-together" class="section level3">
 <h3>Put it all together</h3>
