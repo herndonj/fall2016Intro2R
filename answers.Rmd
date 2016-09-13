@@ -1,11 +1,8 @@
 ---
-title: "Assignments for Intro to R Class"
-author: "Joel Herndon and John Little"
+title: "Answers"
+author: "Joel Herndon"
 date: "September 13, 2016"
-output: 
-  pdf_document: 
-    latex_engine: xelatex
-fontsize: 25pt
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -18,13 +15,26 @@ For the workshop, we've prebuilt a data set that has information about menus in 
 
 1. Using what we've you've seen in class, if `westUnion.csv` is a csv file, how would you load the file into a new variable called `westUnion`?
 
+```{r}
+require(readr)
+westUnion <- read_csv("westUnion.csv")
+```
+
 2. What data type is `westUnion`?
+
+```{r}
+class(westUnion)
+```
+
 
 3. Take a look at the structure of the `westUnion` variable.
     - How many observations (rows) are there?
     - How many variables (columns) are there?
     - How many of the variables are numeric data?
     
+```{r}
+str(westUnion)
+```
 
 
 ## PART TWO: Data Management
@@ -33,13 +43,35 @@ All of the following questions are based on the sample of restaurants represente
 
 1. Which restaurant has the lowest cost item and what is the item?
 
+```{r}
+#require(dplyr)
+arrange(westUnion,cost)
+```
+
+
 2. Which restaurant has the most expensive item(s)?  What are those item(s)?
+
+```{r}
+arrange(westUnion, desc(cost))
+```
+
 
 3. At the West Union, how many of the entrees (found in the `menuType` variable) cost eight dollars?
 
+```{r}
+filter(westUnion, cost == 8)
+```
+
+
 4. The head of Duke dining is considering reducing prices at the West Union. Using what we've learned in class, write a line of code that will calculate a new variable (`halfPrice`) that contains items at half price.
 
-5. How many entrees are in the dataset (`menuType` variable)? How many desserts 
-    
+```{r}
+mutate(westUnion, hal)
+```
 
+
+5. How many entrees are in the dataset (`menuType` variable)? How many desserts 
+```{r}
+count(westUnion, menuType)
+```
 
