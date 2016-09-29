@@ -86,14 +86,14 @@ str(cars)
 1. Student_Assignments.Rmd::PART ONE
 **Loading Data**
 
-## Data Reshaping 
+## Data Reshaping - dplyr
 
 #### John
 
 dplyr is a widely adopted r package and makes it easy to use English verbs to reshape your data.
+Five English verbs to transform and analyze your data.
 
 ### Arrange
-5 English verbs to transform and analyze your data.
 
 **Arrange** to sort rows
 ```{r arrange}
