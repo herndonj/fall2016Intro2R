@@ -146,8 +146,7 @@ tbl_df(sixcyls) %>%
 Using **pipes** to combine commands
 ```{r alltogether}
 
-mutate(cars) %>% 
-  filter(cyl >= 4, cyl <= 6) %>% 
+filter(cars, cyl >= 4, cyl <= 6) %>% 
   select(makeModel, mpg:wt) %>%
   mutate(dispWt = disp / wt) %>% 
   arrange(desc(mpg), wt)

@@ -399,7 +399,7 @@ div.tocify {
 <h3>Arrange</h3>
 <p><strong>Arrange</strong> to sort rows</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(cars, cyl, <span class="kw">desc</span>(mpg), <span class="kw">desc</span>(hp), wt)</code></pre></div>
-<pre><code>## # A tibble: 32 × 12
+<pre><code>## # A tibble: 32 x 12
 ##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1   33.9     4  71.1    65  4.22 1.835 19.90     1     1     4     1
@@ -434,7 +434,7 @@ div.tocify {
 <p><strong>Count</strong> to summarize observations (or rows)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tbl_df</span>(sixcyls) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">count</span>(hp)</code></pre></div>
-<pre><code>## # A tibble: 4 × 2
+<pre><code>## # A tibble: 4 x 2
 ##      hp     n
 ##   &lt;dbl&gt; &lt;int&gt;
 ## 1   105     1
@@ -459,12 +459,11 @@ div.tocify {
 <div id="put-it-all-together" class="section level3">
 <h3>Put it all together</h3>
 <p>Using <strong>pipes</strong> to combine commands</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(cars) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(cyl &gt;=<span class="st"> </span><span class="dv">4</span>, cyl &lt;=<span class="st"> </span><span class="dv">6</span>) %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(cars, cyl &gt;=<span class="st"> </span><span class="dv">4</span>, cyl &lt;=<span class="st"> </span><span class="dv">6</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(makeModel, mpg:wt) %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dispWt =</span> disp /<span class="st"> </span>wt) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(mpg), wt)</code></pre></div>
-<pre><code>## # A tibble: 18 × 8
+<pre><code>## # A tibble: 18 x 8
 ##         makeModel   mpg   cyl  disp    hp  drat    wt   dispWt
 ##             &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
 ## 1  Toyota Corolla  33.9     4  71.1    65  4.22 1.835 38.74659
