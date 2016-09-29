@@ -124,8 +124,7 @@ sixcyls <- select(sixcyls, mpg:wt)
 ### Count
 **Count** to summarize observations (or rows)
 ```{r count}
-tbl_df(sixcyls) %>% 
-  count(hp)
+count(sixcyls, hp)
 ```
 
 
