@@ -282,6 +282,7 @@ div.tocify {
 <h2>Data Management</h2>
 <div id="john" class="section level4">
 <h4>John</h4>
+<p>We’ll use a derivitive of the mtcars dataset. Use the <code>?</code> to get the codebook.</p>
 </div>
 <div id="load-data" class="section level3">
 <h3>Load Data</h3>
@@ -381,9 +382,12 @@ div.tocify {
 </div>
 <div id="exercise-part-one" class="section level2">
 <h2>EXERCISE, Part One</h2>
+<div id="joel" class="section level4">
+<h4>Joel</h4>
 <ol style="list-style-type: decimal">
 <li>Student_Assignments.Rmd::PART ONE <strong>Loading Data</strong></li>
 </ol>
+</div>
 </div>
 <div id="data-reshaping" class="section level2">
 <h2>Data Reshaping</h2>
@@ -393,8 +397,10 @@ div.tocify {
 </div>
 <div id="arrange" class="section level3">
 <h3>Arrange</h3>
+<p>5 English verbs to transform and analyze your data.</p>
+<p><strong>Arrange</strong> to sort rows</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(cars, cyl, <span class="kw">desc</span>(mpg), <span class="kw">desc</span>(hp), wt)</code></pre></div>
-<pre><code>## # A tibble: 32 x 12
+<pre><code>## # A tibble: 32 × 12
 ##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1   33.9     4  71.1    65  4.22 1.835 19.90     1     1     4     1
@@ -411,22 +417,25 @@ div.tocify {
 </div>
 <div id="filter" class="section level3">
 <h3>Filter</h3>
+<p><strong>Filter</strong> to select rows</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sixcyls &lt;-<span class="st"> </span><span class="kw">filter</span>(cars, cyl ==<span class="st"> </span><span class="dv">6</span>)</code></pre></div>
 </div>
 <div id="mutate" class="section level3">
 <h3>Mutate</h3>
-<p>Add columns</p>
+<p><strong>Mutate</strong> to create new variables (add columns). aka Magrittr.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sixcyls &lt;-<span class="st"> </span><span class="kw">mutate</span>(sixcyls, <span class="dt">dispWt =</span> disp /<span class="st"> </span>wt)</code></pre></div>
 </div>
 <div id="select" class="section level3">
 <h3>Select</h3>
+<p><strong>Select</strong> to choose columns (variables)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sixcyls &lt;-<span class="st"> </span><span class="kw">select</span>(sixcyls, mpg:wt)</code></pre></div>
 </div>
 <div id="count" class="section level3">
 <h3>Count</h3>
+<p><strong>Count</strong> to summarize observations (or rows)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tbl_df</span>(sixcyls) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">count</span>(hp)</code></pre></div>
-<pre><code>## # A tibble: 4 x 2
+<pre><code>## # A tibble: 4 × 2
 ##      hp     n
 ##   &lt;dbl&gt; &lt;int&gt;
 ## 1   105     1
@@ -445,17 +454,18 @@ div.tocify {
 <li><code>select()</code></li>
 <li><p><code>count()</code></p></li>
 </ol>
-<div id="joel" class="section level4">
+<div id="joel-1" class="section level4">
 <h4>Joel</h4>
 </div>
 <div id="put-it-all-together" class="section level3">
 <h3>Put it all together</h3>
+<p>Using <strong>pipes</strong> to combine commands</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(cars) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(cyl &gt;=<span class="st"> </span><span class="dv">4</span>, cyl &lt;=<span class="st"> </span><span class="dv">6</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(makeModel, mpg:wt) %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dispWt =</span> disp /<span class="st"> </span>wt) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(mpg), wt)</code></pre></div>
-<pre><code>## # A tibble: 18 x 8
+<pre><code>## # A tibble: 18 × 8
 ##         makeModel   mpg   cyl  disp    hp  drat    wt   dispWt
 ##             &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
 ## 1  Toyota Corolla  33.9     4  71.1    65  4.22 1.835 38.74659

@@ -40,6 +40,8 @@ require(readr)
 
 #### John
 
+We'll use a derivitive of the mtcars dataset.  Use the `?` to get the codebook.
+
 ### Load Data
 ```{r get data}
 cars <- read_csv("cars.csv")
@@ -79,6 +81,8 @@ str(cars)
 
 ## EXERCISE, Part One
 
+#### Joel
+
 1. Student_Assignments.Rmd::PART ONE
 **Loading Data**
 
@@ -89,32 +93,36 @@ str(cars)
 dplyr is a widely adopted r package and makes it easy to use English verbs to reshape your data.
 
 ### Arrange
+5 English verbs to transform and analyze your data.
 
+**Arrange** to sort rows
 ```{r arrange}
 arrange(cars, cyl, desc(mpg), desc(hp), wt)
 ```
 
 ### Filter
 
+**Filter** to select rows
 ```{r filter}
 sixcyls <- filter(cars, cyl == 6)
 ```
 
 ### Mutate
 
-Add columns
+**Mutate** to create new variables (add columns). aka Magrittr.
 ```{r mutate}
 sixcyls <- mutate(sixcyls, dispWt = disp / wt)
 ```
 
 
 ### Select
+**Select** to choose columns (variables)
 ```{r select}
 sixcyls <- select(sixcyls, mpg:wt)
 ```
 
-
 ### Count
+**Count** to summarize observations (or rows)
 ```{r count}
 tbl_df(sixcyls) %>% 
   count(hp)
@@ -135,6 +143,7 @@ tbl_df(sixcyls) %>%
 #### Joel
 
 ### Put it all together
+Using **pipes** to combine commands
 ```{r alltogether}
 
 mutate(cars) %>% 
