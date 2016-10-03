@@ -1,14 +1,8 @@
 ---
-title: "Intro to R by Data & Visualization Services"
-author: "Joel Herndon & John Little"
+title: "Intro to R"
+author: "Joel Herndon & John Little, Data and Visualization Services"
 date: "10/04/2016"
-output: 
-  html_document:
-    toc: true
-    toc_float: true
-    number_sections: false
-    theme: readable
-    highlight: pygments
+output: html_document
 ---
 
 
@@ -17,17 +11,16 @@ knitr::opts_chunk$set(echo = TRUE)
 usePackage <- function(p) {
     if (!is.element(p, installed.packages()[,1]))
         install.packages(p, dep = TRUE)
-    require(p, character.only = TRUE)
+    require(p, character.only = TRUE, warn.conflicts = FALSE, quietly = TRUE)
 }
+usePackage("dplyr")
+usePackage("readr")
+usePackage("ggplot2")
 ```
 
+## Introduction
 
-# Intro to R
-
-
-## Introduction (Powerpoint in "slides" folder: fallR_oct_4_2016.pptx)
-
-#### Joel - PPT
+(Powerpoint in "slides" folder: *fallR_oct_4_2016.pptx*)
 
 1. Welcome
 2. What is r
@@ -36,24 +29,16 @@ usePackage <- function(p) {
 5. What is [Docker](https://vm-manage.oit.duke.edu/containers/rstudio)
 
 
-The following code block uses a nonstandard way to load packages - if you have trouble, substitute `require` for `usePackage`.
+## Loading and Reviewing Data
 
-```{r load-packages}
-usePackage("dplyr")
-usePackage("readr")
-usePackage("ggplot2")
-```
+For the workshop, we'll use a derivitive of the [mtcars](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html) dataset. `read_csv` is a convenience function that allows R to read data files with comma separated values.  It is part of a library of functions that you can add to R using the `readr` package that we loaded earlier in the class.
 
-## Data Management
-
-We'll use a derivitive of the [mtcars](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html) dataset.  Use the `?` to get the codebook. `read_csv` is a convenience function that allows R to read data files with comma separated values.  It is part of a library of functions that you can add to R using the `readr` package that we loaded earlier in the class.
-
-### Load Data
+### Reading CSV files
 ```{r get data}
 cars <- read_csv("data/cars.csv")
 ```
 
-### View your data in a grid
+### Visually inspecting your data with Rstudio's "Viewer""
 
 R and Rstudio have several different ways that you can view the data loaded into the system. One of the more "excel like" views is the "Viewer" which is built into Rstudio.
 
@@ -66,8 +51,8 @@ View(cars)
 * Environment Pane has information about data objects
 * View output has sorting 
 
-
-### Structure of Data Object
+   
+### Evaluate the structure of your data
 Looking at a data frame's structure is another quick way to get a better understanding of the data you have loaded into a data frame.
 
 ```{r structure}
@@ -77,74 +62,74 @@ str(cars)
 #### Similar Commands
 R has several other commands that provide information about data objects:
 
-* `tbl_df()`    # This creates a "tibble" or modern data frame - it's easier to read
+* `tbl_df()`    # This creates a "tibble" or modern data frame - it's easier to read in the console
 * `dim()`       # dimensions - provides the number of rows and columns
 * `class()`     # data type 
 
-## EXERCISE, Part One: Loading Data
+***
+  
+***
+
+### Exercise Part One: Loading Data
 All excercises are inside the "exercises" folder.
+Complete Student_Assignments.Rmd
 
-#### Joel
-
-1. Student_Assignments.Rmd::PART ONE
-**Loading Data**
+***
 
 ## Data management and cleaning with `dplyr`
 
 `dplyr` is a widely adopted r package and makes it easy to use English verbs to manage and clean your data.
 
-Five English verbs make it easy to transform and analyze your data.
+Five verbs make it easy to transform and analyze your data.
 
 ### Arrange
 
-**Arrange** to sort rows
+1. Use **Arrange** to sort rows
 ```{r arrange}
 arrange(cars, cyl, desc(mpg), desc(hp), wt)
 ```
 
 ### Filter
 
-**Filter** to select rows
+2. Use **Filter** to select rows
 ```{r filter}
 sixcyls <- filter(cars, cyl == 6)
 ```
 
 ### Mutate
 
-**Mutate** to create new variables (add columns).
+3. Use **Mutate** to create new variables (add columns).
 ```{r mutate}
 sixcyls <- mutate(sixcyls, dispWt = disp / wt)
 ```
 
 
 ### Select
-**Select** to choose columns (variables)
+
+4. Use **Select** to choose columns (variables)
 ```{r select}
 sixcyls <- select(sixcyls, mpg:wt)
 ```
 
 ### Count
-**Count** to summarize observations (or rows)
+
+5. Use **Count** to summarize observations (or rows)
 ```{r count}
 count(sixcyls, hp)
 ```
 
+***
 
-## EXERCISE, Part 2
+### Exercise Part Two: Data Management
+Now we'll use some of the dplyr verbs on a dataset about Duke's newest dining facility, the West Union.  Data are located in the data folder for this class with the name **westUnion.csv**.
+Once again All excercises are inside the "exercises" folder.
+Complete `Student_Assignments.Rmd` Part Two
 
-2. Student_Assignments.Rmd::PART TWO
-**Data Management**
 
-1. `arrange()`
-2. `filter()`
-3. `mutate()`
-4. `select()`
-5. `count()`
+***
 
-#### Joel
-
-### Put it all together
-Using **magrittr** to combine commands
+### Combining Commands (magrittr)
+One of the great strengths of R is the ability to chain together commands to achieve complex tasks.  For today's workshop, we won't dwell on this, but the following example demonstrates how you can chain or "pipe" `dplyr` commands together to produce complex data workflows.  If you'd like to read more about how this works, check out (magrittr)[https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html].
 ```{r alltogether}
 
 filter(cars, cyl >= 4, cyl <= 6) %>% 
