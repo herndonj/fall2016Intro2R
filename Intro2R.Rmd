@@ -167,7 +167,7 @@ To generate
 
 
 ## Visualizations via `ggplot2`
-Hadley Wickham's `ggplot2`
+Hadley Wickham's `ggplot2` provides an alternate to base R graphics for producing data visualizations.  While the commands may initially seem complex, they follow a standard syntax that often makes it easier to produce compelling visuals using only a few lines of code.  Find out more at [ggplot2](http://ggplot2.org/).  
 
 ### ggplot2 Scatter Plot
 ```{r ggplot}
